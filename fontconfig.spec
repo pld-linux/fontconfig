@@ -22,6 +22,7 @@ BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	libtool
+BuildRequires:	lynx
 Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.4
 Provides:	%{name}-realpkg = %{epoch}:%{version}-%{release}
