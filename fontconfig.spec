@@ -3,13 +3,15 @@ Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.2.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
 Patch0:		%{name}-blacklist.patch
-Patch1:		%{name}-make-jN.patch
+Patch1:		%{name}-date.patch
+Patch2:		%{name}-defaultconfig.patch
+Patch3:		%{name}-make-jN.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -80,14 +82,17 @@ This package contains static version of fontconfig library.
 Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 
 %prep
-%setup -q
+%setup -q 
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure --disable-docs
 %{__make}
