@@ -23,7 +23,9 @@ BuildRequires:	expat-devel
 BuildRequires:	freetype-devel
 BuildRequires:	libtool
 Requires(post): /sbin/ldconfig
+Provides:	XFree86-fontconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	XFree86-fontconfig
 
 %description
 Fontconfig is designed to locate fonts within the system and select
@@ -37,8 +39,10 @@ systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Group:		Development/Libraries
+Provides:	XFree86-fontconfig-devel
 Requires:	%{name} = %{version}
 Requires:	freetype-devel
+Obsoletes:	XFree86-fontconfig-devel
 
 %description devel
 Fontconfig is designed to locate fonts within the system and select
