@@ -17,6 +17,7 @@ URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	docbook-utils
+BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel
