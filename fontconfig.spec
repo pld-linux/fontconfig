@@ -6,14 +6,14 @@ Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.2.95
+Version:	2.2.96
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 # Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
 Source0:	http://pdx.freedesktop.org/~fontconfig/release/%{name}-%{version}.tar.gz
-# Source0-md5:	6e64304b91cfea887558154d465bb752
+# Source0-md5:	45041c2ce1b32bf71097fb6c835b0b84
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-date.patch
 Patch2:		%{name}-autohint.patch
@@ -25,7 +25,7 @@ BuildRequires:	docbook-utils >= 0.6.13-3
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	ed
 BuildRequires:	expat-devel
-BuildRequires:	freetype-devel >= 2.1.8
+BuildRequires:	freetype-devel >= 2.1.5
 BuildRequires:	libtool
 Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.5
