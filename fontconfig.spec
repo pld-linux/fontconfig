@@ -6,7 +6,7 @@ Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Name:		fontconfig
 Version:	1.0.1
-Release:	8
+Release:	9
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -24,6 +24,7 @@ BuildRequires:	freetype-devel
 BuildRequires:	libtool
 Requires(post): /sbin/ldconfig
 Provides:	XFree86-fontconfig
+Provides:	%{name}-realpkg = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	XFree86-fontconfig
 
@@ -40,7 +41,7 @@ Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Group:		Development/Libraries
 Provides:	XFree86-fontconfig-devel
-Requires:	%{name} = %{version}
+Requires:	%{name}-realpkg = %{version}
 Requires:	freetype-devel
 Obsoletes:	XFree86-fontconfig-devel
 
