@@ -9,14 +9,14 @@ Version:	2.0
 Release:	1
 License:	MIT
 Group:		X11/Libraries
-Source0:	http://keithp.com/fonts/pub/%{fcname}.%{fcversion}.tar.gz
-URL:		http://keithp.com/fonts
+Source0:	http://fontconfig.org/release/%{fcname}.%{fcversion}.tar.gz
+URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool
-BuildRequires:	freetype-devel
-BuildRequires:	expat-devel
 BuildRequires:	ed
+BuildRequires:	expat-devel
+BuildRequires:	freetype-devel
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -72,22 +72,17 @@ install fc-list/fc-list.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-list.3
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
-
 %dir %{_sysconfdir}/fonts
 %config %{_sysconfdir}/fonts/fonts.conf
 %{_sysconfdir}/fonts/fonts.dtd
-
 %attr(755,root,root) %{_bindir}/fc-*
-
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-
 %{_mandir}/man1/*
 
 %files devel
