@@ -8,7 +8,7 @@ Name:		fontconfig
 Version:	2.0
 Release:	1
 License:	MIT
-Group:		X11/Libraries
+Group:		Libraries
 Source0:	http://fontconfig.org/release/%{fcname}.%{fcversion}.tar.gz
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
@@ -18,9 +18,6 @@ BuildRequires:	expat-devel
 BuildRequires:	freetype-devel
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 
 %description
 Fontconfig is designed to locate fonts within the system and select
@@ -33,7 +30,7 @@ systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
 %package devel
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
-Group:		X11/Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	freetype-devel
 
