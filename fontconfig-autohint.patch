@@ -1,0 +1,55 @@
+--- fontconfig-2.2.92/fonts.conf.in~	Mon Mar 29 22:49:31 2004
++++ fontconfig-2.2.92/fonts.conf.in	Mon Mar 29 22:51:44 2004
+@@ -177,18 +177,8 @@
+ 	<match target="font">
+ 		<test name="family">
+ 			<string>Bitstream Vera Sans</string>
+-		</test>
+-		<test name="pixelsize" compare="less">
+-			<double>7.5</double>
+-		</test>
+-		<edit name="hinting">
+-			<bool>false</bool>
+-		</edit>
+-	</match>
+-
+-	<match target="font">
+-		<test name="family">
+ 			<string>Bitstream Vera Serif</string>
++			<string>Bitstream Vera Sans Mono</string>
+ 		</test>
+ 		<test name="pixelsize" compare="less">
+ 			<double>7.5</double>
+@@ -198,15 +188,26 @@
+ 		</edit>
+ 	</match>
+ 
++<!-- 
++	The Luxi and Quasi*TTF fonts have poor hinting instructions.
++	Autohinting gives better results for them.
++ -->
++
+ 	<match target="font">
+ 		<test name="family">
+-			<string>Bitstream Vera Sans Mono</string>
++			<string>Luxi Sans</string>
++			<string>Luxi Serif</string>
++			<string>Luxi Mono</string>
++			<string>QuasiBookmanTTF</string>
++			<string>QuasiChanceryTTF</string>
++			<string>QuasiCourierTTF</string>
++			<string>QuasiPalatinoTTF</string>
++			<string>QuasiSwissCondensedTTF</string>
++			<string>QuasiSwissTTF</string>
++			<string>QuasiTimesTTF</string>
+ 		</test>
+-		<test name="pixelsize" compare="less">
+-			<double>7.5</double>
+-		</test>
+-		<edit name="hinting">
+-			<bool>false</bool>
++		<edit name="autohint">
++			<bool>true</bool>
+ 		</edit>
+ 	</match>
+ 
