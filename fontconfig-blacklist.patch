@@ -1,8 +1,7 @@
-diff -urN fontconfig-2.2.0.orig/src/fcdir.c fontconfig-2.2.0/src/fcdir.c
---- fontconfig-2.2.0.orig/src/fcdir.c	Mon May  5 06:45:48 2003
-+++ fontconfig-2.2.0/src/fcdir.c	Mon May  5 06:48:11 2003
-@@ -151,6 +151,40 @@
-     return ret;
+--- fontconfig-2.2.98/src/fcdir.c.orig	2004-12-06 20:25:19.000000000 +0100
++++ fontconfig-2.2.98/src/fcdir.c	2005-01-22 21:26:06.141980024 +0100
+@@ -166,6 +166,40 @@
+     return FcFileScanConfig (set, dirs, cache, blanks, file, force, 0);
  }
  
 +static FcBool
@@ -39,10 +38,10 @@ diff -urN fontconfig-2.2.0.orig/src/fcdir.c fontconfig-2.2.0/src/fcdir.c
 +    return FcFalse;
 +}
 +
- #define FC_MAX_FILE_LEN	    4096
- 
  /*
-@@ -215,7 +249,8 @@
+  * Scan 'dir', adding font files to 'set' and
+  * subdirectories to 'dirs'
+@@ -232,7 +266,8 @@
      }
      while (ret && (e = readdir (d)))
      {
@@ -51,4 +50,4 @@ diff -urN fontconfig-2.2.0.orig/src/fcdir.c fontconfig-2.2.0/src/fcdir.c
 +	    !FcBlackListed (e->d_name))
  	{
  	    strcpy ((char *) base, (char *) e->d_name);
- 	    ret = FcFileScan (set, dirs, cache, blanks, file, force);
+ 	    ret = FcFileScanConfig (set, dirs, cache, blanks, file, force, config);
