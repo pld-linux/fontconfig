@@ -5,13 +5,13 @@
 Summary:	Font configuration and customization tools
 Summary(pl):	Narzêdzia do konfigurowania fontów
 Name:		fontconfig
-Version:	2.2.99
-Release:	2
+Version:	2.3.0
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	4dcb11d8ed8272ec326c2633acf891fb
+# Source0-md5:	a4dea0b513c5d4f88bbf0e78099dbaba
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-autohint.patch
 Patch2:		%{name}-autohint2.patch
@@ -138,6 +138,8 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man{1,3,5}
 install doc/*.3 $RPM_BUILD_ROOT%{_mandir}/man3
 install doc/*.5 $RPM_BUILD_ROOT%{_mandir}/man5
 
+cp -f conf.d/README README.confd
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -150,7 +152,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog README
+%doc AUTHORS COPYING ChangeLog README README.confd
 %attr(755,root,root) %{_bindir}/fc-*
 %{_mandir}/man1/*.1*
 %{_mandir}/man5/*.5*
@@ -159,8 +161,9 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null
 %defattr(644,root,root,755)
 %dir %{_sysconfdir}/fonts
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/fonts.conf
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/local.conf
 %{_sysconfdir}/fonts/fonts.dtd
+%dir %{_sysconfdir}/fonts/conf.d
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
