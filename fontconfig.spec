@@ -142,7 +142,8 @@ install doc/*.5 $RPM_BUILD_ROOT%{_mandir}/man5
 rm -rf $RPM_BUILD_ROOT
 
 %post
-HOME=/root %{_bindir}/fc-cache -f 2>/dev/null
+umask 022
+HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null
 
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
