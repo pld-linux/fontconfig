@@ -1,3 +1,4 @@
+%bcond_with	bytecode # enables bytecode hinting by default
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
@@ -13,6 +14,7 @@ Source0:	http://pdx.freedesktop.org/~fontconfig/release/%{name}-%{version}.tar.g
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-date.patch
 Patch2:		%{name}-autohint.patch
+Patch3:		%{name}-autohint2.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -87,8 +89,11 @@ Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%if %{with bytecode}
 %patch2 -p1
-
+%else
+%patch3 -p1
+%endif
 %build
 %{__libtoolize}
 %{__aclocal}
