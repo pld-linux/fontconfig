@@ -5,7 +5,7 @@
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Name:		fontconfig
-Version:	2.0
+Version:	1.0.1
 Release:	1
 License:	MIT
 Group:		Libraries
@@ -49,9 +49,10 @@ Ten pakiet zawiera pliki nag³ówkowe potrzebne do kompilowania
 programów korzystaj±cych z biblioteki fontconfig.
 
 %prep
-%setup -q -n %{fcname}.%{fcversion}/%{name}
+%setup -q -n %{fcname}.%{fcversion}
 
 %build
+cd %{name}
 %{__autoconf}
 %configure
 %{__make}
@@ -60,6 +61,7 @@ programów korzystaj±cych z biblioteki fontconfig.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
+cd %{name}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -74,9 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README
+%doc %{name}/{AUTHORS,ChangeLog,README}
 %dir %{_sysconfdir}/fonts
-%config %{_sysconfdir}/fonts/fonts.conf
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/fonts.conf
 %{_sysconfdir}/fonts/fonts.dtd
 %attr(755,root,root) %{_bindir}/fc-*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
