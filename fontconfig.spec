@@ -3,15 +3,12 @@ Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Name:		fontconfig
 Version:	2.2.0
-Release:	0.1
+Release:	0.5
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-#Patch0:		%{name}-date.patch
-Patch1:		%{name}-blacklist.patch
-#Patch2:		%{name}-defaultconfig.patch -- is it needed?
-#Patch3:		%{name}-fontdir.patch
+Patch0:		%{name}-blacklist.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -58,15 +55,12 @@ programów korzystaj±cych z biblioteki fontconfig.
 
 %prep
 %setup -q
-#%patch0 -p1
-%patch1 -p1
-#%patch2 -p1 -- is it needed?
-#%patch3 -p1
+%patch0 -p1
 
 %build
 %{__autoconf}
 %configure --disable-docs
-%{__make} CC="%{__cc}"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
