@@ -15,7 +15,6 @@ Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
 # Source0-md5:	d5e42a27ad2f22bc5ec45f15533fc5d1
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-autohint.patch
-Patch2:		%{name}-autohint2.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -124,8 +123,6 @@ Este pacote contém a biblioteca estática do fontconfig
 %patch0 -p1
 %if %{with bytecode}
 %patch1 -p1
-%else
-%patch2 -p1
 %endif
 
 %build
