@@ -1,21 +1,20 @@
 --- fontconfig-2.2.90/fonts.conf.in.orig	2003-05-31 22:58:41.000000000 +0200
-+++ fontconfig-2.2.90/fonts.conf.in	2003-07-22 23:03:35.000000000 +0200
-@@ -27,6 +27,14 @@
++++ fontconfig-2.2.90/fonts.conf.in	2003-07-23 01:38:26.000000000 +0200
+@@ -27,6 +27,13 @@
  	@FC_FONTPATH@
  	<dir>~/.fonts</dir>
  
 +<!-- Yes it's ugly... disable bitmap fonts but world is better with that -->
 +	<selectfont>
 +		<rejectfont>
-+			<glob>*.pcf*</glob>
-+			<glob>*.bdf*</glob>
++			<glob>*dpi/*.pcf*</glob>
 +		</rejectfont>
 +	</selectfont>
 +
  <!--
    Accept deprecated 'mono' alias, replacing it with 'monospace'
  -->
-@@ -233,44 +241,102 @@
+@@ -233,44 +240,102 @@
  		<family>serif</family>
  		<prefer>
  			<family>Bitstream Vera Serif</family>
