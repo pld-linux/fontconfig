@@ -2,12 +2,11 @@
 # Conditional build
 %bcond_with	bytecode	# use bytecode hinting instead of autohinting by default
 #
-Summary:	Font configuration and customization library
-Summary(pl):	Biblioteka do konfigurowania fontów
-Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
+Summary:	Font configuration and customization tools
+Summary(pl):	Narzêdzia do konfigurowania fontów
 Name:		fontconfig
 Version:	2.2.98
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -25,30 +24,32 @@ BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.5
 BuildRequires:	libtool
-Requires(post):	/sbin/ldconfig
+Requires	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	freetype >= 2.1.5
-Provides:	XFree86-fontconfig
-Obsoletes:	XFree86-fontconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Fontconfig is designed to locate fonts within the system and select
 them according to requirements specified by applications.
 
+This package contains tools and documentation.
+
 %description -l pl
 Fontconfig jest biblioteka przeznaczon± do lokalizowania fontów w
 systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
 
-%description -l pt_BR
-Fontconfig é uma biblioteca para configuração e customização do acesso
-a fontes.
+Paket ten zawiera programy narzêdziowe i dokumentacjê.
+
+#%description -l pt_BR
+#Fontconfig é uma biblioteca para configuração e customização do acesso
+#a fontes.
 
 %package devel
-Summary:	Font configuration and customization library
-Summary(pl):	Biblioteka do konfigurowania fontów
+Summary:	Font configuration and customization library - development files
+Summary(pl):	Biblioteka do konfigurowania fontów - pliki dla programistów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	expat-devel
 Requires:	freetype-devel >= 2.1.5
 Provides:	XFree86-fontconfig-devel
@@ -69,6 +70,28 @@ Ten pakiet zawiera pliki nag³ówkowe potrzebne do kompilowania
 programów korzystaj±cych z biblioteki fontconfig.
 
 %description devel -l pt_BR
+Fontconfig é uma biblioteca para configuração e customização do acesso
+a fontes.
+
+%package libs
+Summary:	Font configuration and customization library
+Summary(pl):	Biblioteka do konfigurowania fontów
+Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
+Group:		Development/Libraries
+Requires:	freetype >= 2.1.5
+Provides:       XFree86-fontconfig
+Conflicts:	fontconfig <= 1:2.2.98-1
+Obsoletes:      XFree86-fontconfig
+
+%description libs
+Fontconfig is designed to locate fonts within the system and select
+them according to requirements specified by applications.
+
+%description libs -l pl
+Fontconfig jest biblioteka przeznaczon± do lokalizowania fontów w
+systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
+
+%description libs -l pt_BR
 Fontconfig é uma biblioteca para configuração e customização do acesso
 a fontes.
 
@@ -127,12 +150,7 @@ HOME=/root %{_bindir}/fc-cache -f 2>/dev/null
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog README
-%dir %{_sysconfdir}/fonts
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/fonts.conf
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/local.conf
-%{_sysconfdir}/fonts/fonts.dtd
 %attr(755,root,root) %{_bindir}/fc-*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_mandir}/man1/*.1*
 %{_mandir}/man5/*.5*
 
@@ -144,6 +162,14 @@ HOME=/root %{_bindir}/fc-cache -f 2>/dev/null
 %{_includedir}/fontconfig
 %{_pkgconfigdir}/fontconfig.pc
 %{_mandir}/man3/*.3*
+
+%files libs
+%defattr(644,root,root,755)
+%dir %{_sysconfdir}/fonts
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/fonts.conf
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/local.conf
+%{_sysconfdir}/fonts/fonts.dtd
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files static
 %defattr(644,root,root,755)
