@@ -23,6 +23,7 @@ BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel
 BuildRequires:	libtool
+Requires(post): /sbin/ldconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -83,8 +84,11 @@ install fc-list/fc-list.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-list.3
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post
+/sbin/ldconfig
+HOME=/root %{_bindir}/fc-cache -f 2> /dev/null
+
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
