@@ -16,6 +16,7 @@ Patch2:		%{name}-defaultconfig.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	docbook-utils
 BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel
