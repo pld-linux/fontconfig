@@ -1,10 +1,13 @@
-%bcond_with	bytecode # enables bytecode hinting by default
+#
+# Conditional build
+%bcond_with	bytecode	# use bytecode hinting instead of autohinting by default
+#
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.2.93
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -94,6 +97,7 @@ Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 %else
 %patch3 -p1
 %endif
+
 %build
 %{__libtoolize}
 %{__aclocal}
