@@ -1,18 +1,38 @@
---- fontconfig/fonts.conf.in.defaultconfig	Mon Aug 19 15:31:59 2002
-+++ fontconfig/fonts.conf.in	Mon Sep  2 23:32:37 2002
-@@ -170,45 +170,86 @@
- 	<alias>
+diff -urN fontconfig-2.2.0.orig/fonts.conf.in fontconfig-2.2.0/fonts.conf.in
+--- fontconfig-2.2.0.orig/fonts.conf.in	Mon May  5 06:45:48 2003
++++ fontconfig-2.2.0/fonts.conf.in	Mon May  5 06:50:47 2003
+@@ -265,41 +265,99 @@
  		<family>serif</family>
  		<prefer>
+ 			<family>Bitstream Vera Serif</family>
 -			<family>Times New Roman</family>
  			<family>Nimbus Roman No9 L</family>
  			<family>Luxi Serif</family>
 -			<family>Times</family>
++ 			<family>Tomas</family>
++ 			<family>Artsounk</family>
++ 			<family>BPG UTF8 M</family>
++ 			<family>Phaisarn</family>
++ 			<family>Phaisarn98</family>
++ 			<family>Norasi</family>
++ 			<family>Times-Hebrew</family>
++ 			<family>Dror</family>
++ 			<family>JG LaoTimes</family>
++ 			<family>Saysettha Unicode</family>
++ 			<family>Pigiarniq</family>
++ 			<family>KacstBook</family>
++ 			<family>Urdu Naqsh Nastalique</family>
++ 			<family>Raghindi</family>
++ 			<family>malayalam</family>
++ 			<family>MS Mincho</family>
  			<family>Kochi Mincho</family>
-+			<family>ZYSong18030</family>
++ 			<family>ZYSong18030</family>
++ 			<family>MS Song</family>
  			<family>AR PL SungtiL GB</family>
  			<family>AR PL Mingti2L Big5</family>
- 			<family>Baekmuk Batang</family>			
+-			<family>Baekmuk Batang</family>			
++			<family>Baekmuk Batang</family>
++			<family>TSCu_Times</family>
 +			<family>Times New Roman</family>
 +			<family>Times</family>
  		</prefer>
@@ -20,82 +40,72 @@
  	<alias>
  		<family>sans-serif</family>
  		<prefer>
+ 			<family>Bitstream Vera Sans</family>
 -			<family>Verdana</family>
 -			<family>Nimbus Sans L</family>
- 			<family>Luxi Sans</family>
--			<family>Arial</family>
-+			<family>Nimbus Sans L</family>
+-			<family>Luxi Sans</family>
++ 			<family>Luxi Sans</family>
++ 			<family>Nimbus Sans L</family>
+ 			<family>Arial</family>
  			<family>Helvetica</family>
++ 			<family>Arija</family>
++ 			<family>Verdana</family>
++ 			<family>Lucida Sans Unicode</family>
++ 			<family>Tahoma</family>
++ 			<family>Yudit Unicode</family>
++ 			<family>Kerkis</family>
++ 			<family>ArmNet Helvetica</family>
++ 			<family>Artsounk</family>
++ 			<family>BPG UTF8 M</family>
++ 			<family>Norasi</family>
++ 			<family>Nachlieli</family>
++ 			<family>Saysettha Unicode</family>
++ 			<family>JG Lao Old Arial</family>
++ 			<family>GF Zemen Unicode</family>
++ 			<family>Pigiarniq</family>
++ 			<family>KacstBook</family>
++ 			<family>Urdu Naqsh Nastalique</family>
++ 			<family>Raghindi</family>
++ 			<family>malayalam</family>
++ 			<family>Teams</family>
++ 			<family>MS Gothic</family>
  			<family>Kochi Gothic</family>
--			<family>AR PL KaitiM GB</family>
--			<family>AR PL KaitiM Big5</family>
--			<family>Baekmuk Dotum</family>
-+			<family>ZYSong18030</family>
-+			<family>AR PL SungtiL GB</family>
-+			<family>AR PL Mingti2L Big5</family>
-+			<family>Baekmuk Gulim</family>
-+			<family>Verdana</family>
-+			<family>Arial</family>
++ 			<family>ZYSong18030</family>
++ 			<family>AR PL SungtiL GB</family>
++ 			<family>AR PL Mingti2L Big5</family>
++ 			<family>Baekmuk Gulim</family>
+ 			<family>AR PL KaitiM GB</family>
+ 			<family>AR PL KaitiM Big5</family>
+ 			<family>Baekmuk Dotum</family>
  			<family>SimSun</family>
++ 			<family>TSCu_Paranar</family>
++ 			<family>Arial Unicode</family>
++ 			<family>Code2000</family>
  		</prefer>
  	</alias>
  	<alias>
  		<family>monospace</family>
  		<prefer>
+ 			<family>Bitstream Vera Sans Mono</family>
 -			<family>Andale Mono</family>
 -			<family>Courier New</family>
  			<family>Luxi Mono</family>
  			<family>Nimbus Mono L</family>
++ 			<family>Courier</family>
++ 			<family>Kurjeris</family>
++ 			<family>Courier MonoThai</family>
++ 			<family>Courier-Hebrew</family>
++ 			<family>Hasida</family>
++ 			<family>GF Zemen Unicode</family>
  			<family>Kochi Gothic</family>
--			<family>AR PL KaitiM GB</family>
--			<family>Baekmuk Dotum</family>
-+			<family>ZYSong18030</family>
-+			<family>AR PL SungtiL GB</family>
-+			<family>AR PL Mingti2L Big5</family>
-+			<family>Baekmuk Gulim</family>
-+			<family>Andale Mono</family>
-+			<family>Courier New</family>
++ 			<family>MS Gothic</family>
++ 			<family>ZYSong18030</family>
++ 			<family>AR PL SungtiL GB</family>
++ 			<family>AR PL Mingti2L Big5</family>
++ 			<family>Baekmuk Gulim</family>
++ 			<family>Andale Mono</family>
++ 			<family>Courier New</family>
++ 			<family>TSC_AvarangalFxd</family>
+ 			<family>AR PL KaitiM GB</family>
+ 			<family>Baekmuk Dotum</family>
  		</prefer>
- 	</alias>
- 
- <!-- 
-+ We can't hint CJK fonts well, so turn off hinting for CJK fonts.
-+ -->
-+
-+	<match target="font">
-+		<test name="lang" compare="contains">
-+			<string>ja</string>
-+		</test>
-+		<edit name="hinting" mode="assign">
-+			<bool>false</bool>
-+		</edit>
-+                <!-- the rh_prefer_bitmaps options (a nonstandard
-+                     Red Hat extension), controls whether embedded 
-+                     bitmaps, when available are preferred
-+                     to antialiased rendering. For Japanese,
-+                     we prefer antialiased rendering -->
-+		<edit name="rh_prefer_bitmaps" mode="assign">
-+			<bool>false</bool>
-+		</edit>
-+	</match>
-+	<match target="font">
-+		<test name="lang" compare="contains">
-+			<string>ko</string>
-+		</test>
-+		<edit name="hinting" mode="assign">
-+			<bool>false</bool>
-+		</edit>
-+	</match>
-+	<match target="font">
-+		<test name="lang" compare="contains">
-+			<string>zh</string>
-+		</test>
-+		<edit name="hinting" mode="assign">
-+			<bool>false</bool>
-+		</edit>
-+	</match>
-+
-+<!-- 
-  Artificial oblique for fonts without an italic or oblique version
-  -->
-  

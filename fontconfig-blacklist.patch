@@ -1,6 +1,7 @@
---- fontconfig/src/fcdir.c.blacklist	Mon Aug 26 15:57:40 2002
-+++ fontconfig/src/fcdir.c	Fri Aug 30 14:59:05 2002
-@@ -150,6 +150,40 @@
+diff -urN fontconfig-2.2.0.orig/src/fcdir.c fontconfig-2.2.0/src/fcdir.c
+--- fontconfig-2.2.0.orig/src/fcdir.c	Mon May  5 06:45:48 2003
++++ fontconfig-2.2.0/src/fcdir.c	Mon May  5 06:48:11 2003
+@@ -151,6 +151,40 @@
      return ret;
  }
  
@@ -40,8 +41,8 @@
 +
  #define FC_MAX_FILE_LEN	    4096
  
- FcBool
-@@ -201,7 +235,8 @@
+ /*
+@@ -215,7 +249,8 @@
      }
      while (ret && (e = readdir (d)))
      {
