@@ -23,6 +23,7 @@ BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.0
 BuildRequires:	libtool
+BuildRequires:	perl-SGMLS
 Requires(post):	/sbin/ldconfig
 Provides:	%{name}-realpkg = %{epoch}:%{version}-%{release}
 Provides:	XFree86-fontconfig
