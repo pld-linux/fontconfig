@@ -11,8 +11,7 @@ Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
-# Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-Source0:	http://pdx.freedesktop.org/~fontconfig/release/%{name}-%{version}.tar.gz
+Source0:	http://fontconfig.org/fontconfig/release/%{name}-%{version}.tar.gz
 # Source0-md5:	45041c2ce1b32bf71097fb6c835b0b84
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-date.patch
