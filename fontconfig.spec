@@ -8,6 +8,7 @@ Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
+# Source0-md5: cf0ce6c87e5d6362e9ebc8d94a45fdc4
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-date.patch
 Patch2:		%{name}-defaultconfig.patch
