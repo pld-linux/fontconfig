@@ -5,13 +5,13 @@
 Summary:	Font configuration and customization tools
 Summary(pl):	Narzêdzia do konfigurowania fontów
 Name:		fontconfig
-Version:	2.2.98
+Version:	2.2.99
 Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	f13af7e7dfa4e1d68aeb9dcc8d12045a
+# Source0-md5:	4dcb11d8ed8272ec326c2633acf891fb
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-autohint.patch
 Patch2:		%{name}-autohint2.patch
