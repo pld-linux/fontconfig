@@ -2,13 +2,13 @@ Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.2.0
-Release:	2
+Version:	2.2.90
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5: cf0ce6c87e5d6362e9ebc8d94a45fdc4
+# Source0-md5:	5cb87476743be1bbf1674ed72a76ae6a
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-date.patch
 Patch2:		%{name}-defaultconfig.patch
@@ -104,9 +104,6 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-install fc-cache/fc-cache.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-cache.1
-install fc-list/fc-list.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-list.1
 
 mv -f $RPM_BUILD_ROOT%{_docdir}/%{name} installed-docs
 
