@@ -4,6 +4,7 @@
 #
 Summary:	Font configuration and customization tools
 Summary(pl):	Narzêdzia do konfigurowania fontów
+Summary(pt_BR):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.3.1
 Release:	1
@@ -40,14 +41,16 @@ systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
 
 Paket ten zawiera programy narzêdziowe i dokumentacjê.
 
-#%description -l pt_BR
-#Fontconfig é uma biblioteca para configuração e customização do acesso
-#a fontes.
+%description -l pt_BR
+Fontconfig é uma biblioteca para configuração e customização do acesso
+a fontes.
+
+Este pacote contém as ferramentas e documentação.
 
 %package libs
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
-Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
+Summary(pt_BR):	Biblioteca para configuração e customização do acesso a fontes
 Group:		Development/Libraries
 Requires:	freetype >= 2.1.5
 Provides:	XFree86-fontconfig
@@ -69,7 +72,7 @@ a fontes.
 %package devel
 Summary:	Font configuration and customization library - development files
 Summary(pl):	Biblioteka do konfigurowania fontów - pliki dla programistów
-Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
+Summary(pt_BR):	Biblioteca para configuração e customização do acesso a fontes - arquivos de desenvolvimento
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	expat-devel
@@ -95,9 +98,13 @@ programów korzystaj±cych z biblioteki fontconfig.
 Fontconfig é uma biblioteca para configuração e customização do acesso
 a fontes.
 
+Este pacote contém arquivos de desenvolvimento necessários à criação
+de extensões baseadas na biblioteca fontconfig.
+
 %package static
 Summary:	Static font configuration and customization library
 Summary(pl):	Statyczna biblioteka do konfigurowania fontów
+Summary(pt_BR):	Biblioteca estática para configuração e customização do acesso a fontes
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:	XFree86-fontconfig-static
@@ -108,6 +115,9 @@ This package contains static version of fontconfig library.
 
 %description static -l pl
 Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
+
+%description static -l pt_BR
+Este pacote contém a biblioteca estática do fontconfig
 
 %prep
 %setup -q
