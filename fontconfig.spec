@@ -1,19 +1,18 @@
+
+%define         _snap           040304
+
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.2.92
-Release:	3
+Version:	2.2.92.%{_snap}
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
-# Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-Source0:	http://pdx.freedesktop.org/~fontconfig/release/%{name}-%{version}.tar.gz
-# Source0-md5:	45c4f2bac99b74fea693eda28fe30c45
-Patch0:		%{name}-blacklist.patch
-Patch1:		%{name}-date.patch
-Patch2:		%{name}-defaultconfig.patch
-Patch3:		%{name}-freetype-includes.patch
+Source0:	http://ep09.pld-linux.org/~adgor/pld/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	3ca9eac63d4076d1062e59f40ff3ac21
+#Source0:	http://pdx.freedesktop.org/~fontconfig/release/%{name}-%{version}.tar.gz
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -87,11 +86,7 @@ This package contains static version of fontconfig library.
 Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+%setup -q -n %{name}-%{_snap}
 
 %build
 %{__libtoolize}
@@ -99,8 +94,9 @@ Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure \
-	--disable-docs
+
+%configure
+
 %{__make}
 
 %install
@@ -110,8 +106,8 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man{1,3,5}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_mandir}/man3
 install doc/*.3 $RPM_BUILD_ROOT%{_mandir}/man3
-install doc/*.5 $RPM_BUILD_ROOT%{_mandir}/man5
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -129,20 +125,22 @@ HOME=/root %{_bindir}/fc-cache -f 2> /dev/null
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/fonts.conf
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/local.conf
 %{_sysconfdir}/fonts/fonts.dtd
-%attr(755,root,root) %{_bindir}/fc-*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_bindir}/fc-cache
+%attr(755,root,root) %{_bindir}/fc-list
+%attr(755,root,root) %{_bindir}/fc-match
+%attr(755,root,root) %{_libdir}/libfontconfig.so.*.*.*
 %{_mandir}/man1/*.1*
 %{_mandir}/man5/*.5*
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/fontconfig-devel/*.html
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%doc doc/{fontconfig-devel/*.html,fontconfig-{user,devel}.txt,fontconfig-user.html}
+%{_libdir}/libfontconfig.la
+%{_libdir}/libfontconfig.so
 %{_includedir}/fontconfig
 %{_pkgconfigdir}/fontconfig.pc
 %{_mandir}/man3/*.3*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libfontconfig.a
