@@ -6,7 +6,7 @@ Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Name:		fontconfig
 Version:	1.0.1
-Release:	7
+Release:	8
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -70,14 +70,15 @@ cd %{name}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_mandir}/man1
+install -d $RPM_BUILD_ROOT%{_mandir}/man{1,3}
 
 cd %{name}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install fc-cache/fc-cache.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-cache.3
-install fc-list/fc-list.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-list.3
+install fc-cache/fc-cache.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-cache.1
+install fc-list/fc-list.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-list.1
+install src/fontconfig.man $RPM_BUILD_ROOT%{_mandir}/man3/fontconfig.3
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -96,7 +97,7 @@ HOME=/root %{_bindir}/fc-cache -f 2> /dev/null
 %{_sysconfdir}/fonts/fonts.dtd
 %attr(755,root,root) %{_bindir}/fc-*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-%{_mandir}/man1/*
+%{_mandir}/man1/*.1*
 
 %files devel
 %defattr(644,root,root,755)
@@ -105,3 +106,4 @@ HOME=/root %{_bindir}/fc-cache -f 2> /dev/null
 %{_includedir}/fontconfig
 %{_libdir}/lib*.so
 %{_pkgconfigdir}/fontconfig.pc
+%{_mandir}/man3/*.3*
