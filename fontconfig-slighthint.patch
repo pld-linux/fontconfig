@@ -33,8 +33,8 @@
 +	FcPatternAddInteger (pattern, FC_HINT_STYLE, FC_HINT_FULL);
 +    }
  }
---- fontconfig/src/fcname.c.slighthint	Sun Aug 11 14:10:42 2002
-+++ fontconfig/src/fcname.c	Mon Aug 12 16:24:28 2002
+--- fontconfig/src/fcname.c.orig	Wed Oct  2 09:11:30 2002
++++ fontconfig/src/fcname.c	Sun Dec  8 00:52:34 2002
 @@ -40,6 +40,7 @@
      { FC_FOUNDRY,	FcTypeString, },
  /*    { FC_CORE,		FcTypeBool, }, */
@@ -43,15 +43,16 @@
      { FC_HINTING,	FcTypeBool, },
      { FC_VERTICAL_LAYOUT,   FcTypeBool, },
      { FC_AUTOHINT,	FcTypeBool, },
-@@ -153,6 +154,11 @@
-     { (FcChar8 *) "bgr",	    "rgba",	    FC_RGBA_BGR, },
+@@ -157,6 +158,12 @@
      { (FcChar8 *) "vrgb",	    "rgba",	    FC_RGBA_VRGB },
      { (FcChar8 *) "vbgr",	    "rgba",	    FC_RGBA_VBGR },
-+
-+    { (FcChar8 *) "hintnone",	    "hintstyle",   FC_HINT_NONE },
-+    { (FcChar8 *) "hintslight",	    "hintstyle",   FC_HINT_SLIGHT },
-+    { (FcChar8 *) "hintmedium",	    "hintstyle",   FC_HINT_MEDIUM },
-+    { (FcChar8 *) "hintfull",	    "hintstyle",   FC_HINT_FULL },
+     { (FcChar8 *) "none",	    "rgba",	    FC_RGBA_NONE },
++    
++    { (FcChar8 *) "hintnone",      "hintstyle",   FC_HINT_NONE },
++    { (FcChar8 *) "hintslight",    "hintstyle",   FC_HINT_SLIGHT },
++    { (FcChar8 *) "hintmedium",    "hintstyle",   FC_HINT_MEDIUM },
++    { (FcChar8 *) "hintfull",      "hintstyle",   FC_HINT_FULL },
++    
  };
  
  #define NUM_FC_CONSTANTS   (sizeof _FcBaseConstants/sizeof _FcBaseConstants[0])
