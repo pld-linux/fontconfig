@@ -2,17 +2,17 @@ Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.2.90
-Release:	3
+Version:	2.2.92
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
-Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	5cb87476743be1bbf1674ed72a76ae6a
+# Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
+Source0:	http://pdx.freedesktop.org/~fontconfig/release/%{name}-%{version}.tar.gz
+# Source0-md5:	45c4f2bac99b74fea693eda28fe30c45
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-date.patch
 Patch2:		%{name}-defaultconfig.patch
-Patch3:		%{name}-make-jN.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -87,7 +87,6 @@ Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 %{__libtoolize}
@@ -95,17 +94,19 @@ Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure --disable-docs
+%configure \
+	--disable-docs
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_mandir}/man1
+install -d $RPM_BUILD_ROOT%{_mandir}/man{1,3,5}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv -f $RPM_BUILD_ROOT%{_docdir}/%{name} installed-docs
+install doc/*.3 $RPM_BUILD_ROOT%{_mandir}/man3
+install doc/*.5 $RPM_BUILD_ROOT%{_mandir}/man5
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -130,7 +131,7 @@ HOME=/root %{_bindir}/fc-cache -f 2> /dev/null
 
 %files devel
 %defattr(644,root,root,755)
-%doc installed-docs/fontconfig-devel/*.html
+%doc doc/fontconfig-devel/*.html
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_includedir}/fontconfig

@@ -1,5 +1,6 @@
---- fontconfig-2.2.90/fonts.conf.in.orig	2003-05-31 22:58:41.000000000 +0200
-+++ fontconfig-2.2.90/fonts.conf.in	2003-07-23 01:38:26.000000000 +0200
+diff -urN fontconfig-2.2.92.org/fonts.conf.in fontconfig-2.2.92/fonts.conf.in
+--- fontconfig-2.2.92.org/fonts.conf.in	2003-11-07 00:08:18.000000000 +0100
++++ fontconfig-2.2.92/fonts.conf.in	2003-11-07 00:15:55.000000000 +0100
 @@ -27,6 +27,13 @@
  	@FC_FONTPATH@
  	<dir>~/.fonts</dir>
@@ -14,7 +15,7 @@
  <!--
    Accept deprecated 'mono' alias, replacing it with 'monospace'
  -->
-@@ -233,44 +240,102 @@
+@@ -236,46 +243,104 @@
  		<family>serif</family>
  		<prefer>
  			<family>Bitstream Vera Serif</family>
@@ -44,8 +45,8 @@
 +			<family>MS Song</family>
  			<family>AR PL SungtiL GB</family>
  			<family>AR PL Mingti2L Big5</family>
--			<family>Baekmuk Batang</family>			
-+			<family>Baekmuk Batang</family>
+ 			<family>Baekmuk Batang</family>
+ 			<family>FreeSerif</family>
 +			<family>TSCu_Times</family>
 +			<family>Times New Roman</family>
 +			<family>Times</family>
@@ -92,6 +93,7 @@
  			<family>AR PL KaitiM Big5</family>
  			<family>Baekmuk Dotum</family>
  			<family>SimSun</family>
+ 			<family>FreeSans</family>
 +			<family>TSCu_Paranar</family>
 +			<family>Arial Unicode</family>
 +			<family>Code2000</family>
@@ -123,4 +125,4 @@
 +			<family>TSC_AvarangalFxd</family>
  			<family>AR PL KaitiM GB</family>
  			<family>Baekmuk Dotum</family>
- 		</prefer>
+ 			<family>FreeMono</family>
