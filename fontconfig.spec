@@ -1,13 +1,15 @@
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
+Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.2.0
-Release:	0.5
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
 Patch0:		%{name}-blacklist.patch
+Patch1:		%{name}-make-jN.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -15,7 +17,7 @@ BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel
 BuildRequires:	libtool
-Requires(post): /sbin/ldconfig
+Requires(post):	/sbin/ldconfig
 Provides:	XFree86-fontconfig
 Provides:	%{name}-realpkg = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -29,9 +31,14 @@ them according to requirements specified by applications.
 Fontconfig jest biblioteka przeznaczon± do lokalizowania fontów w
 systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
 
+%description -l pt_BR
+Fontconfig é uma biblioteca para configuração e customização do acesso
+a fontes.
+
 %package devel
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
+Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Group:		Development/Libraries
 Requires:	%{name}-realpkg = %{version}
 Requires:	expat-devel
@@ -54,6 +61,10 @@ systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
 Ten pakiet zawiera pliki nag³ówkowe potrzebne do kompilowania
 programów korzystaj±cych z biblioteki fontconfig.
 
+%description devel -l pt_BR
+Fontconfig é uma biblioteca para configuração e customização do acesso
+a fontes.
+
 %package static
 Summary:	Static font configuration and customization library
 Summary(pl):	Statyczna biblioteka do konfigurowania fontów
@@ -71,9 +82,13 @@ Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal}
 %{__autoconf}
+%{__automake}
 %configure --disable-docs
 %{__make}
 
