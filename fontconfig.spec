@@ -22,7 +22,7 @@ BuildRequires:	freetype-devel
 BuildRequires:	libtool
 Requires(post):	/sbin/ldconfig
 Provides:	XFree86-fontconfig
-Provides:	%{name}-realpkg = %{version}
+Provides:	%{name}-realpkg = %{epoch}:%{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	XFree86-fontconfig
 
@@ -43,10 +43,10 @@ Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Group:		Development/Libraries
-Requires:	%{name}-realpkg = %{version}
+Requires:	%{name}-realpkg = %{epoch}:%{version}
 Requires:	expat-devel
 Requires:	freetype-devel
-Provides:	%{name}-devel-realpkg = %{version}
+Provides:	%{name}-devel-realpkg = %{epoch}:%{version}
 Provides:	XFree86-fontconfig-devel
 Obsoletes:	XFree86-fontconfig-devel
 
@@ -72,7 +72,7 @@ a fontes.
 Summary:	Static font configuration and customization library
 Summary(pl):	Statyczna biblioteka do konfigurowania fontów
 Group:		Development/Libraries
-Requires:	%{name}-devel-realpkg = %{version}
+Requires:	%{name}-devel-realpkg = %{epoch}:%{version}
 Provides:	XFree86-fontconfig-static
 Obsoletes:	XFree86-fontconfig-static
 
