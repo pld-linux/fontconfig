@@ -6,7 +6,7 @@ Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Name:		fontconfig
 Version:	1.0.1
-Release:	2
+Release:	3
 Epoch:		1
 License:	MIT
 Group:		Libraries
