@@ -50,9 +50,9 @@ Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Group:		Development/Libraries
 Requires:	freetype >= 2.1.5
-Provides:       XFree86-fontconfig
+Provides:	XFree86-fontconfig
 Conflicts:	fontconfig <= 1:2.2.98-1
-Obsoletes:      XFree86-fontconfig
+Obsoletes:	XFree86-fontconfig
 
 %description libs
 Fontconfig is designed to locate fonts within the system and select
