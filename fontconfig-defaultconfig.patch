@@ -1,5 +1,5 @@
---- fonts.conf.in.orig	2003-05-31 22:58:41.000000000 +0200
-+++ fonts.conf.in	2003-07-22 23:03:35.000000000 +0200
+--- fontconfig-2.2.90/fonts.conf.in.orig	2003-05-31 22:58:41.000000000 +0200
++++ fontconfig-2.2.90/fonts.conf.in	2003-07-22 23:03:35.000000000 +0200
 @@ -27,6 +27,14 @@
  	@FC_FONTPATH@
  	<dir>~/.fonts</dir>
