@@ -20,21 +20,24 @@
  		</test>
  		<test name="pixelsize" compare="less">
  			<double>7.5</double>
-@@ -198,15 +188,26 @@
+@@ -198,15 +188,29 @@
  		</edit>
  	</match>
  
 +<!-- 
-+	The Luxi and Quasi*TTF fonts have poor hinting instructions.
++	The Free*, Luxi and Quasi*TTF fonts have poor hinting instructions.
 +	Autohinting gives better results for them.
 + -->
 +
  	<match target="font">
  		<test name="family">
 -			<string>Bitstream Vera Sans Mono</string>
++			<string>FreeMono</string>
++			<string>FreeSans</string>
++			<string>FreeSerif</string>
++			<string>Luxi Mono</string>
 +			<string>Luxi Sans</string>
 +			<string>Luxi Serif</string>
-+			<string>Luxi Mono</string>
 +			<string>QuasiBookmanTTF</string>
 +			<string>QuasiChanceryTTF</string>
 +			<string>QuasiCourierTTF</string>
