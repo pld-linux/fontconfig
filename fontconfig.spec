@@ -3,7 +3,7 @@ Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.2.92
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -13,6 +13,7 @@ Source0:	http://pdx.freedesktop.org/~fontconfig/release/%{name}-%{version}.tar.g
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-date.patch
 Patch2:		%{name}-defaultconfig.patch
+Patch3:		%{name}-freetype-includes.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -20,13 +21,13 @@ BuildRequires:	docbook-utils
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	ed
 BuildRequires:	expat-devel
-BuildRequires:	freetype-devel
+BuildRequires:	freetype-devel >= 2.1.0
 BuildRequires:	libtool
 Requires(post):	/sbin/ldconfig
+Provides:	%{name}-realpkg = %{epoch}:%{version}-%{release}
 Provides:	XFree86-fontconfig
-Provides:	%{name}-realpkg = %{epoch}:%{version}
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	XFree86-fontconfig
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Fontconfig is designed to locate fonts within the system and select
@@ -48,7 +49,7 @@ Group:		Development/Libraries
 Requires:	%{name}-realpkg = %{epoch}:%{version}
 Requires:	expat-devel
 Requires:	freetype-devel
-Provides:	%{name}-devel-realpkg = %{epoch}:%{version}
+Provides:	%{name}-devel-realpkg = %{epoch}:%{version}-%{release}
 Provides:	XFree86-fontconfig-devel
 Obsoletes:	XFree86-fontconfig-devel
 
@@ -89,6 +90,7 @@ Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
