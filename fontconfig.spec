@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc %{name}/{AUTHORS,ChangeLog,README}
+%doc %{name}/{AUTHORS,README}
 %dir %{_sysconfdir}/fonts
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/fonts.conf
 %{_sysconfdir}/fonts/fonts.dtd
@@ -87,6 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%doc %{name}/ChangeLog
 %attr(755,root,root) %{_bindir}/fontconfig-config
 %{_includedir}/fontconfig
 %{_libdir}/lib*.so
