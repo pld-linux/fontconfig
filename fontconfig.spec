@@ -7,6 +7,7 @@ Summary(pl):	Biblioteka do konfigurowania fontów
 Name:		fontconfig
 Version:	1.0.1
 Release:	1
+Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{fcname}.%{fcversion}.tar.gz
