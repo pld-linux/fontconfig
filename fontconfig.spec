@@ -17,13 +17,12 @@ Patch3:		%{name}-freetype-includes.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	docbook-utils
+BuildRequires:	docbook-utils >= 0.6.13-3
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.0
 BuildRequires:	libtool
-BuildRequires:	perl-SGMLS
 Requires(post):	/sbin/ldconfig
 Provides:	%{name}-realpkg = %{epoch}:%{version}-%{release}
 Provides:	XFree86-fontconfig
