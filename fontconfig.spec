@@ -21,8 +21,9 @@ Patch3:		%{name}-autohint2.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	docbook-utils >= 0.6.13-3
-BuildRequires:	docbook-dtd41-sgml
+# --disable-docs is used
+#BuildRequires:	docbook-utils >= 0.6.13-3
+#BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.5
