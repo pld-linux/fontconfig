@@ -1,0 +1,11 @@
+--- fontconfig/Makefile.in.fontdir	Wed Jul 24 01:32:42 2002
++++ fontconfig/Makefile.in	Wed Jul 24 01:33:04 2002
+@@ -38,7 +38,7 @@
+ 
+ fonts.conf: fonts.conf.in
+ 	rm -f $@
+-	sh ./setfontdirs $(FC_DEFAULT_FONTS) $(X_FONT_DIR)
++	sh ./setfontdirs $(FC_DEFAULT_FONTS) $(X_FONT_DIR)/Type1
+ 
+ clean::
+ 	rm -f fonts.conf
