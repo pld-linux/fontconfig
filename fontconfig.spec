@@ -71,7 +71,7 @@ cd %{name}
 cd %{name}
 %{__autoconf}
 %configure
-%{__make} CC=%{__cc}
+%{__make} CC="%{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
