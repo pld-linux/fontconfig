@@ -3,7 +3,7 @@ Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.2.90
-Release:	2
+Release:	3
 Epoch:		1
 License:	MIT
 Group:		Libraries
