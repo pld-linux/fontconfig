@@ -142,10 +142,10 @@ install doc/*.5 $RPM_BUILD_ROOT%{_mandir}/man5
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
 HOME=/root %{_bindir}/fc-cache -f 2>/dev/null
 
-%postun -p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
