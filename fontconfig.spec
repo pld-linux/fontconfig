@@ -1,20 +1,17 @@
 
-%define fcname		fcpackage
-%define fcversion	2_1
-
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Name:		fontconfig
-Version:	1.0.1
-Release:	9
+Version:	2.2.0
+Release:	0.1
 Epoch:		1
 License:	MIT
 Group:		Libraries
-Source0:	http://fontconfig.org/release/%{fcname}.%{fcversion}.tar.gz
-Patch0:		%{name}-date.patch
+Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
+#Patch0:		%{name}-date.patch
 Patch1:		%{name}-blacklist.patch
-Patch2:		%{name}-defaultconfig.patch
-Patch3:		%{name}-fontdir.patch
+#Patch2:		%{name}-defaultconfig.patch -- is it needed?
+#Patch3:		%{name}-fontdir.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -60,30 +57,33 @@ Ten pakiet zawiera pliki nag³ówkowe potrzebne do kompilowania
 programów korzystaj±cych z biblioteki fontconfig.
 
 %prep
-%setup -q -n %{fcname}.%{fcversion}
-%patch0 -p1
-cd %{name}
+%setup -q
+#%patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
+#%patch2 -p1 -- is it needed?
+#%patch3 -p1
 
 %build
-cd %{name}
 %{__autoconf}
-%configure
+%configure --disable-docs
 %{__make} CC="%{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_mandir}/man{1,3}
+install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
-cd %{name}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install fc-cache/fc-cache.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-cache.1
 install fc-list/fc-list.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-list.1
-install src/fontconfig.man $RPM_BUILD_ROOT%{_mandir}/man3/fontconfig.3
+
+# small docdir location hack
+mv $RPM_BUILD_ROOT%{_docdir}/%{name}/%{name}-devel $RPM_BUILD_ROOT%{_docdir}/%{name}-devel-%{version}
+mv $RPM_BUILD_ROOT%{_docdir}/%{name}/%{name}-* $RPM_BUILD_ROOT%{_docdir}/%{name}-devel-%{version}/
+
+# Remove *.a file cause it is useless?
+rm $RPM_BUILD_ROOT%{_libdir}/*.a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -96,19 +96,21 @@ HOME=/root %{_bindir}/fc-cache -f 2> /dev/null
 
 %files
 %defattr(644,root,root,755)
-%doc %{name}/{AUTHORS,README}
+%doc AUTHORS README
 %dir %{_sysconfdir}/fonts
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/fonts.conf
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/local.conf
 %{_sysconfdir}/fonts/fonts.dtd
 %attr(755,root,root) %{_bindir}/fc-*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_mandir}/man1/*.1*
+%{_mandir}/man5/*.5*
 
 %files devel
 %defattr(644,root,root,755)
-%doc %{name}/ChangeLog
-%attr(755,root,root) %{_bindir}/fontconfig-config
+%doc ChangeLog
 %{_includedir}/fontconfig
 %{_libdir}/lib*.so
+%{_libdir}/lib*.la
 %{_pkgconfigdir}/fontconfig.pc
 %{_mandir}/man3/*.3*
