@@ -83,7 +83,7 @@ This package contains static version of fontconfig library.
 Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 
 %prep
-%setup -q 
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
