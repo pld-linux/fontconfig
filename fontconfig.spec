@@ -1,4 +1,3 @@
-
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Name:		fontconfig
@@ -34,9 +33,11 @@ systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Group:		Development/Libraries
-Provides:	XFree86-fontconfig-devel
 Requires:	%{name}-realpkg = %{version}
+Requires:	expat-devel
 Requires:	freetype-devel
+Provides:	%{name}-devel-realpkg = %{version}
+Provides:	XFree86-fontconfig-devel
 Obsoletes:	XFree86-fontconfig-devel
 
 %description devel
@@ -52,6 +53,20 @@ systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
 
 Ten pakiet zawiera pliki nag³ówkowe potrzebne do kompilowania
 programów korzystaj±cych z biblioteki fontconfig.
+
+%package static
+Summary:	Static font configuration and customization library
+Summary(pl):	Statyczna biblioteka do konfigurowania fontów
+Group:		Development/Libraries
+Requires:	%{name}-devel-realpkg = %{version}
+Provides:	XFree86-fontconfig-static
+Obsoletes:	XFree86-fontconfig-static
+
+%description static
+This package contains static version of fontconfig library.
+
+%description static -l pl
+Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 
 %prep
 %setup -q
@@ -72,12 +87,7 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 install fc-cache/fc-cache.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-cache.1
 install fc-list/fc-list.man $RPM_BUILD_ROOT%{_mandir}/man1/fc-list.1
 
-# small docdir location hack
-mv $RPM_BUILD_ROOT%{_docdir}/%{name}/%{name}-devel $RPM_BUILD_ROOT%{_docdir}/%{name}-devel-%{version}
-mv $RPM_BUILD_ROOT%{_docdir}/%{name}/%{name}-* $RPM_BUILD_ROOT%{_docdir}/%{name}-devel-%{version}/
-
-# Remove *.a file cause it is useless?
-rm $RPM_BUILD_ROOT%{_libdir}/*.a
+mv -f $RPM_BUILD_ROOT%{_docdir}/%{name} installed-docs
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -90,7 +100,7 @@ HOME=/root %{_bindir}/fc-cache -f 2> /dev/null
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS README
+%doc AUTHORS COPYING ChangeLog README
 %dir %{_sysconfdir}/fonts
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/fonts.conf
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/local.conf
@@ -102,9 +112,13 @@ HOME=/root %{_bindir}/fc-cache -f 2> /dev/null
 
 %files devel
 %defattr(644,root,root,755)
-%doc ChangeLog
-%{_includedir}/fontconfig
-%{_libdir}/lib*.so
+%doc installed-docs/fontconfig-devel/*.html
+%attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
+%{_includedir}/fontconfig
 %{_pkgconfigdir}/fontconfig.pc
 %{_mandir}/man3/*.3*
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a
