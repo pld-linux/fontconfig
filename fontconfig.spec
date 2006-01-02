@@ -15,6 +15,7 @@ Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
 # Source0-md5:	0d80f23213a9ca0ea60dc4879efffec3
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-autohint.patch
+Patch2:		%{name}-lunak_fccfg.c.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -124,6 +125,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %if %{with bytecode}
 %patch1 -p1
 %endif
+%patch2 -p0
 
 %build
 %{__libtoolize}
