@@ -25,6 +25,7 @@ BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.5
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	freetype >= 2.1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
