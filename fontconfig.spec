@@ -138,7 +138,7 @@ Este pacote contém a biblioteca estática do fontconfig
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_mandir}/man{1,3,5}
+install -d $RPM_BUILD_ROOT{%{_mandir}/man{1,3,5},/var/cache/fontconfig}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -164,6 +164,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null
 %attr(755,root,root) %{_bindir}/fc-*
 %{_mandir}/man1/*.1*
 %{_mandir}/man5/*.5*
+/var/cache/fontconfig
 
 %files libs
 %defattr(644,root,root,755)
