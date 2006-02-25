@@ -2,21 +2,19 @@
 # Conditional build
 %bcond_with	bytecode	# use bytecode hinting instead of autohinting by default
 #
-Summary:	Font configuration and customization library
-Summary(pl):	Biblioteka do konfigurowania fontów
-Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
+Summary:	Font configuration and customization tools
+Summary(pl):	Narzêdzia do konfigurowania fontów
+Summary(pt_BR):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.2.96
+Version:	2.3.94
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
-Source0:	http://fontconfig.org/fontconfig/release/%{name}-%{version}.tar.gz
-# Source0-md5:	45041c2ce1b32bf71097fb6c835b0b84
+Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
+# Source0-md5:	362ca8b2168b20d30838700238015811
 Patch0:		%{name}-blacklist.patch
-Patch1:		%{name}-date.patch
-Patch2:		%{name}-autohint.patch
-Patch3:		%{name}-autohint2.patch
+Patch1:		%{name}-autohint.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -26,30 +24,57 @@ BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.5
 BuildRequires:	libtool
-Requires(post):	/sbin/ldconfig
+BuildRequires:	pkgconfig
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	freetype >= 2.1.5
-Provides:	XFree86-fontconfig
-Obsoletes:	XFree86-fontconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Fontconfig is designed to locate fonts within the system and select
 them according to requirements specified by applications.
 
+This package contains tools and documentation.
+
 %description -l pl
-Fontconfig jest biblioteka przeznaczon± do lokalizowania fontów w
+Fontconfig jest bibliotek± przeznaczon± do lokalizowania fontów w
 systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
+
+Paket ten zawiera programy narzêdziowe i dokumentacjê.
 
 %description -l pt_BR
 Fontconfig é uma biblioteca para configuração e customização do acesso
 a fontes.
 
-%package devel
+Este pacote contém as ferramentas e documentação.
+
+%package libs
 Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
-Summary(pt_BR):	Fontconfig é uma biblioteca para configuração e customização do acesso a fontes
+Summary(pt_BR):	Biblioteca para configuração e customização do acesso a fontes
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	freetype >= 2.1.5
+Provides:	XFree86-fontconfig
+Conflicts:	fontconfig <= 1:2.2.98-1
+Obsoletes:	XFree86-fontconfig
+
+%description libs
+Fontconfig is designed to locate fonts within the system and select
+them according to requirements specified by applications.
+
+%description libs -l pl
+Fontconfig jest bibliotek± przeznaczon± do lokalizowania fontów w
+systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
+
+%description libs -l pt_BR
+Fontconfig é uma biblioteca para configuração e customização do acesso
+a fontes.
+
+%package devel
+Summary:	Font configuration and customization library - development files
+Summary(pl):	Biblioteka do konfigurowania fontów - pliki dla programistów
+Summary(pt_BR):	Biblioteca para configuração e customização do acesso a fontes - arquivos de desenvolvimento
+Group:		Development/Libraries
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	expat-devel
 Requires:	freetype-devel >= 2.1.5
 Provides:	XFree86-fontconfig-devel
@@ -63,7 +88,7 @@ This package contains the header files needed to develop programs that
 use these fontconfig.
 
 %description devel -l pl
-Fontconfig jest biblioteka przeznaczon± do lokalizowania fontów w
+Fontconfig jest bibliotek± przeznaczon± do lokalizowania fontów w
 systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
 
 Ten pakiet zawiera pliki nag³ówkowe potrzebne do kompilowania
@@ -73,9 +98,13 @@ programów korzystaj±cych z biblioteki fontconfig.
 Fontconfig é uma biblioteca para configuração e customização do acesso
 a fontes.
 
+Este pacote contém arquivos de desenvolvimento necessários à criação
+de extensões baseadas na biblioteca fontconfig.
+
 %package static
 Summary:	Static font configuration and customization library
 Summary(pl):	Statyczna biblioteka do konfigurowania fontów
+Summary(pt_BR):	Biblioteca estática para configuração e customização do acesso a fontes
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:	XFree86-fontconfig-static
@@ -87,14 +116,14 @@ This package contains static version of fontconfig library.
 %description static -l pl
 Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 
+%description static -l pt_BR
+Este pacote contém a biblioteca estática do fontconfig
+
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 %if %{with bytecode}
-%patch2 -p1
-%else
-%patch3 -p1
+%patch1 -p1
 %endif
 
 %build
@@ -109,7 +138,7 @@ Ten pakiet zawiera statyczn± wersjê biblioteki fontconfig.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_mandir}/man{1,3,5}
+install -d $RPM_BUILD_ROOT{%{_mandir}/man{1,3,5},/var/cache/fontconfig}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -117,26 +146,34 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man{1,3,5}
 install doc/*.3 $RPM_BUILD_ROOT%{_mandir}/man3
 install doc/*.5 $RPM_BUILD_ROOT%{_mandir}/man5
 
+cp -f conf.d/README README.confd
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
-HOME=/root %{_bindir}/fc-cache -f 2>/dev/null
+umask 022
+HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null
 
-%postun -p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog README
-%dir %{_sysconfdir}/fonts
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/fonts.conf
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fonts/local.conf
-%{_sysconfdir}/fonts/fonts.dtd
+%doc AUTHORS COPYING ChangeLog README README.confd
 %attr(755,root,root) %{_bindir}/fc-*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_mandir}/man1/*.1*
 %{_mandir}/man5/*.5*
+/var/cache/fontconfig
+
+%files libs
+%defattr(644,root,root,755)
+%dir %{_sysconfdir}/fonts
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/fonts.conf
+%{_sysconfdir}/fonts/fonts.dtd
+%dir %{_sysconfdir}/fonts/conf.d
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
