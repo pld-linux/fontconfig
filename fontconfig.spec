@@ -24,6 +24,7 @@ BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.5
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	freetype >= 2.1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -51,6 +52,29 @@ Summary:	Font configuration and customization library
 Summary(pl):	Biblioteka do konfigurowania fontów
 Summary(pt_BR):	Biblioteca para configuração e customização do acesso a fontes
 Group:		Development/Libraries
+Requires:	freetype >= 2.1.5
+Provides:	XFree86-fontconfig
+Conflicts:	fontconfig <= 1:2.2.98-1
+Obsoletes:	XFree86-fontconfig
+
+%description libs
+Fontconfig is designed to locate fonts within the system and select
+them according to requirements specified by applications.
+
+%description libs -l pl
+Fontconfig jest bibliotek± przeznaczon± do lokalizowania fontów w
+systemie i wybierania ich w zale¿no¶ci od potrzeb aplikacji.
+
+%description libs -l pt_BR
+Fontconfig é uma biblioteca para configuração e customização do acesso
+a fontes.
+
+%package devel
+Summary:	Font configuration and customization library - development files
+Summary(pl):	Biblioteka do konfigurowania fontów - pliki dla programistów
+Summary(pt_BR):	Biblioteca para configuração e customização do acesso a fontes - arquivos de desenvolvimento
+Group:		Development/Libraries
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	freetype >= 2.1.5
 Provides:	XFree86-fontconfig
 Conflicts:	fontconfig <= 1:2.2.98-1
@@ -137,7 +161,7 @@ Este pacote contém a biblioteca estática do fontconfig
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_mandir}/man{1,3,5}
+install -d $RPM_BUILD_ROOT{%{_mandir}/man{1,3,5},/var/cache/fontconfig}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -163,6 +187,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null
 %attr(755,root,root) %{_bindir}/fc-*
 %{_mandir}/man1/*.1*
 %{_mandir}/man5/*.5*
+/var/cache/fontconfig
 
 %files libs
 %defattr(644,root,root,755)
