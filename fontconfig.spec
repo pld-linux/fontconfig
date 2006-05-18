@@ -153,7 +153,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 umask 022
-HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null
+HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
