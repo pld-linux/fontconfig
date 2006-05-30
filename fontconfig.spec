@@ -1,13 +1,14 @@
 #
 # Conditional build
 %bcond_with	bytecode	# use bytecode hinting instead of autohinting by default
+%bcond_without	static_libs	# don't build static library
 #
 Summary:	Font configuration and customization tools
 Summary(pl):	Narzêdzia do konfigurowania fontów
 Summary(pt_BR):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.3.95
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -15,6 +16,7 @@ Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
 # Source0-md5:	6860be35882f6d34636d52345efd5944
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-autohint.patch
+Patch2:		%{name}-cmap-parsing.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -125,6 +127,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %if %{with bytecode}
 %patch1 -p1
 %endif
+%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -133,7 +136,8 @@ Este pacote contém a biblioteca estática do fontconfig
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-docs
+	--disable-docs \
+	%{!?with_static_libs:--disable-static}
 %{__make}
 
 %install
@@ -184,6 +188,8 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %{_pkgconfigdir}/fontconfig.pc
 %{_mandir}/man3/*.3*
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+%endif
