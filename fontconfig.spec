@@ -7,16 +7,15 @@ Summary:	Font configuration and customization tools
 Summary(pl):	Narzêdzia do konfigurowania fontów
 Summary(pt_BR):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.3.95
-Release:	2
+Version:	2.4.0
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	6860be35882f6d34636d52345efd5944
+# Source0-md5:	f87eb0e6596510bbf87e57b33a657ec5
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-autohint.patch
-Patch2:		%{name}-cmap-parsing.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -127,7 +126,6 @@ Este pacote contém a biblioteca estática do fontconfig
 %if %{with bytecode}
 %patch1 -p1
 %endif
-%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -175,8 +173,11 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %dir %{_sysconfdir}/fonts
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/fonts.conf
 %{_sysconfdir}/fonts/fonts.dtd
+%dir %{_sysconfdir}/fonts/conf.avail
+%{_sysconfdir}/fonts/conf.avail/*.conf
+%{_sysconfdir}/fonts/conf.avail/README
 %dir %{_sysconfdir}/fonts/conf.d
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
+%config(noreplace) %verify(not link md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
