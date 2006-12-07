@@ -7,13 +7,13 @@ Summary:	Font configuration and customization tools
 Summary(pl):	Narzêdzia do konfigurowania fontów
 Summary(pt_BR):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.4.1
-Release:	2
+Version:	2.4.2
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	108f9a03fa9ed9dd779cc7ca236da557
+# Source0-md5:	f035852f521b54677f2b5c9e2f6d54a4
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-autohint.patch
 URL:		http://fontconfig.org/
