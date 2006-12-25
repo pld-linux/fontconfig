@@ -177,7 +177,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %{_sysconfdir}/fonts/conf.avail/*.conf
 %{_sysconfdir}/fonts/conf.avail/README
 %dir %{_sysconfdir}/fonts/conf.d
-%config(noreplace) %verify(not link md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
+%config(noreplace,missingok) %verify(not link md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
