@@ -4,8 +4,8 @@
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Font configuration and customization tools
-Summary(pl.UTF-8):   Narzędzia do konfigurowania fontów
-Summary(pt_BR.UTF-8):   Ferramentas para configuração e customização do acesso a fontes
+Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
+Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.4.2
 Release:	1
@@ -50,8 +50,8 @@ Este pacote contém as ferramentas e documentação.
 
 %package libs
 Summary:	Font configuration and customization library
-Summary(pl.UTF-8):   Biblioteka do konfigurowania fontów
-Summary(pt_BR.UTF-8):   Biblioteca para configuração e customização do acesso a fontes
+Summary(pl.UTF-8):	Biblioteka do konfigurowania fontów
+Summary(pt_BR.UTF-8):	Biblioteca para configuração e customização do acesso a fontes
 Group:		Development/Libraries
 Requires:	freetype >= 2.1.5
 Provides:	XFree86-fontconfig
@@ -72,8 +72,8 @@ a fontes.
 
 %package devel
 Summary:	Font configuration and customization library - development files
-Summary(pl.UTF-8):   Biblioteka do konfigurowania fontów - pliki dla programistów
-Summary(pt_BR.UTF-8):   Biblioteca para configuração e customização do acesso a fontes - arquivos de desenvolvimento
+Summary(pl.UTF-8):	Biblioteka do konfigurowania fontów - pliki dla programistów
+Summary(pt_BR.UTF-8):	Biblioteca para configuração e customização do acesso a fontes - arquivos de desenvolvimento
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	expat-devel
@@ -104,8 +104,8 @@ de extensões baseadas na biblioteca fontconfig.
 
 %package static
 Summary:	Static font configuration and customization library
-Summary(pl.UTF-8):   Statyczna biblioteka do konfigurowania fontów
-Summary(pt_BR.UTF-8):   Biblioteca estática para configuração e customização do acesso a fontes
+Summary(pl.UTF-8):	Statyczna biblioteka do konfigurowania fontów
+Summary(pt_BR.UTF-8):	Biblioteca estática para configuração e customização do acesso a fontes
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:	XFree86-fontconfig-static
