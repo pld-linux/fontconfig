@@ -8,7 +8,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.4.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -16,6 +16,7 @@ Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
 # Source0-md5:	f035852f521b54677f2b5c9e2f6d54a4
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-autohint.patch
+Patch2:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -126,6 +127,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %if %{with bytecode}
 %patch1 -p1
 %endif
+%patch2 -p1
 
 %build
 %{__libtoolize}
