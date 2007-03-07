@@ -1,6 +1,5 @@
 #
 # Conditional build
-%bcond_with	bytecode	# use bytecode hinting instead of autohinting by default
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Font configuration and customization tools
@@ -15,8 +14,7 @@ Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
 # Source0-md5:	f035852f521b54677f2b5c9e2f6d54a4
 Patch0:		%{name}-blacklist.patch
-Patch1:		%{name}-autohint.patch
-Patch2:		%{name}-bitstream-cyberbit.patch
+Patch1:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -124,10 +122,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %prep
 %setup -q
 %patch0 -p1
-%if %{with bytecode}
 %patch1 -p1
-%endif
-%patch2 -p1
 
 %build
 %{__libtoolize}
