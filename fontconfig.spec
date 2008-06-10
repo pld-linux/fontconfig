@@ -6,13 +6,13 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.5.0
+Version:	2.6.0
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	21d14af8ecf645ef76211c782cdd7aeb
+# Source0-md5:	ab54ec1d4ddd836313fdbc0cd5299d6d
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
@@ -131,7 +131,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-docs \
+	--enable-docs \
 	%{!?with_static_libs:--disable-static}
 %{__make}
 
@@ -140,10 +140,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_mandir}/man{1,3,5},/var/cache/fontconfig}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-install doc/*.3 $RPM_BUILD_ROOT%{_mandir}/man3
-install doc/*.5 $RPM_BUILD_ROOT%{_mandir}/man5
+	DESTDIR=$RPM_BUILD_ROOT \
+	htmldoc_DATA= \
+	doc_DATA=
 
 cp -f conf.d/README README.confd
 
@@ -161,8 +160,8 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog README README.confd
 %attr(755,root,root) %{_bindir}/fc-*
-%{_mandir}/man1/*.1*
-%{_mandir}/man5/*.5*
+%{_mandir}/man1/fc-*.1*
+%{_mandir}/man5/fonts-conf.5*
 /var/cache/fontconfig
 
 %files libs
@@ -172,22 +171,23 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %{_sysconfdir}/fonts/fonts.dtd
 %dir %{_sysconfdir}/fonts/conf.avail
 %{_sysconfdir}/fonts/conf.avail/*.conf
-%{_sysconfdir}/fonts/conf.avail/README
 %dir %{_sysconfdir}/fonts/conf.d
+%{_sysconfdir}/fonts/conf.d/README
 %config(noreplace,missingok) %verify(not link md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libfontconfig.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfontconfig.so.1
 
 %files devel
 %defattr(644,root,root,755)
 %doc doc/fontconfig-devel/*.html
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/libfontconfig.so
+%{_libdir}/libfontconfig.la
 %{_includedir}/fontconfig
 %{_pkgconfigdir}/fontconfig.pc
-%{_mandir}/man3/*.3*
+%{_mandir}/man3/Fc*.3*
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libfontconfig.a
 %endif
