@@ -7,12 +7,13 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.6.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
 # Source0-md5:	ab54ec1d4ddd836313fdbc0cd5299d6d
+Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
@@ -143,6 +144,8 @@ install -d $RPM_BUILD_ROOT{%{_mandir}/man{1,3,5},/var/cache/fontconfig}
 	DESTDIR=$RPM_BUILD_ROOT \
 	htmldoc_DATA= \
 	doc_DATA=
+install %{SOURCE1} \
+	$RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/10-lcd-filter.conf
 
 cp -f conf.d/README README.confd
 
