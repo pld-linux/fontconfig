@@ -2,17 +2,19 @@
 # Conditional build
 %bcond_without	static_libs	# don't build static library
 #
+%define		snap behdad.20090601
 Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.6.0
-Release:	3
+Version:	2.6.99
+Release:	0.%{snap}.1
 Epoch:		1
 License:	MIT
 Group:		Libraries
-Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	ab54ec1d4ddd836313fdbc0cd5299d6d
+#Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
+Source0:	http://people.freedesktop.org/~behdad/fontconfig/%{name}-%{version}.%{snap}.tar.gz
+# Source0-md5:	03aec10ac95d376ab402e5644196684b
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-bitstream-cyberbit.patch
@@ -121,7 +123,7 @@ Ten pakiet zawiera statyczną wersję biblioteki fontconfig.
 Este pacote contém a biblioteca estática do fontconfig
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}.%{snap}
 %patch0 -p1
 %patch1 -p1
 
