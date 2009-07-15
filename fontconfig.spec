@@ -19,8 +19,8 @@ Patch1:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	docbook-utils >= 0.6.13-3
 BuildRequires:	docbook-dtd41-sgml
+BuildRequires:	docbook-utils >= 0.6.13-3
 BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.5
@@ -55,8 +55,8 @@ Summary(pt_BR.UTF-8):	Biblioteca para configuração e customização do acesso 
 Group:		Development/Libraries
 Requires:	freetype >= 2.1.5
 Provides:	XFree86-fontconfig
-Conflicts:	fontconfig <= 1:2.2.98-1
 Obsoletes:	XFree86-fontconfig
+Conflicts:	fontconfig <= 1:2.2.98-1
 
 %description libs
 Fontconfig is designed to locate fonts within the system and select
@@ -170,7 +170,12 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %dir %{_sysconfdir}/fonts/conf.d
 %{_sysconfdir}/fonts/conf.d/README
 %config(noreplace,missingok) %verify(not link md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
-%attr(755,root,root) %{_bindir}/fc-*
+%attr(755,root,root) %{_bindir}/fc-cache
+%attr(755,root,root) %{_bindir}/fc-cat
+%attr(755,root,root) %{_bindir}/fc-list
+%attr(755,root,root) %{_bindir}/fc-match
+%attr(755,root,root) %{_bindir}/fc-query
+%attr(755,root,root) %{_bindir}/fc-scan
 %{_mandir}/man1/fc-*.1*
 %{_mandir}/man5/fonts-conf.5*
 /var/cache/fontconfig
