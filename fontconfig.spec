@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.7.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -162,13 +162,6 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog README README.confd
-%attr(755,root,root) %{_bindir}/fc-*
-%{_mandir}/man1/fc-*.1*
-%{_mandir}/man5/fonts-conf.5*
-/var/cache/fontconfig
-
-%files libs
-%defattr(644,root,root,755)
 %dir %{_sysconfdir}/fonts
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/fonts.conf
 %{_sysconfdir}/fonts/fonts.dtd
@@ -177,6 +170,13 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %dir %{_sysconfdir}/fonts/conf.d
 %{_sysconfdir}/fonts/conf.d/README
 %config(noreplace,missingok) %verify(not link md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
+%attr(755,root,root) %{_bindir}/fc-*
+%{_mandir}/man1/fc-*.1*
+%{_mandir}/man5/fonts-conf.5*
+/var/cache/fontconfig
+
+%files libs
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libfontconfig.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfontconfig.so.1
 
