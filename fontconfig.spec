@@ -6,13 +6,13 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.7.1
+Version:	2.7.2
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	41024d11765acdd7520d1f5458e751db
+# Source0-md5:	8d61fa6835c7f4c2398b7f2ee2feb526
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-bitstream-cyberbit.patch
