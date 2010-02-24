@@ -19,6 +19,7 @@ Patch1:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-utils >= 0.6.13-3
 BuildRequires:	ed
