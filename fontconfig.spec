@@ -53,7 +53,7 @@ Este pacote contém as ferramentas e documentação.
 Summary:	Font configuration and customization library
 Summary(pl.UTF-8):	Biblioteka do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Biblioteca para configuração e customização do acesso a fontes
-Group:		Development/Libraries
+Group:		Libraries
 Requires:	freetype >= 2.1.5
 Provides:	XFree86-fontconfig
 Obsoletes:	XFree86-fontconfig
