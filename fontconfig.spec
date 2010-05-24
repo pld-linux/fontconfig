@@ -162,7 +162,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog README README.confd
+%doc AUTHORS COPYING ChangeLog README README.confd doc/fontconfig-user.html
 %dir %{_sysconfdir}/fonts
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/fonts.conf
 %{_sysconfdir}/fonts/fonts.dtd
