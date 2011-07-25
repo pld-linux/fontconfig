@@ -1,0 +1,27 @@
+commit bf3bfa72d91e8bc37903d7e1bb7ac23c6ef4952a
+Author: Behdad Esfahbod <behdad@behdad.org>
+Date:   Wed Jun 22 13:06:19 2011 -0400
+
+    Fix stupid bug in FcFontSort()
+    
+    I broke FcFontSort() language handling at the end of 2008 with this
+    commit: c7641f28
+    
+    G-d knows how many of the lang-matching bugs in bugzilla will be
+    fixed by this changed...
+    
+    I'm really sorry, everyone!
+
+diff --git a/src/fcmatch.c b/src/fcmatch.c
+index f111be5..1b9162b 100644
+--- a/src/fcmatch.c
++++ b/src/fcmatch.c
+@@ -749,7 +749,7 @@ FcFontSetSort (FcConfig	    *config,
+ 	 * If this node matches any language, go check
+ 	 * which ones and satisfy those entries
+ 	 */
+-	if (nodeps[f]->score[MATCH_LANG_INDEX] < 200)
++	if (nodeps[f]->score[MATCH_LANG_INDEX] < 2000)
+ 	{
+ 	    for (i = 0; i < nPatternLang; i++)
+ 	    {
