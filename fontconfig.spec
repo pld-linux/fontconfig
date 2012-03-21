@@ -6,17 +6,16 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.8.0
-Release:	3
+Version:	2.9.0
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	77e15a92006ddc2adbb06f840d591c0e
+# Source0-md5:	26c83855ed256b5c032baae032fadc4f
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-bitstream-cyberbit.patch
-Patch2:		%{name}-git.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -126,7 +125,6 @@ Este pacote contém a biblioteca estática do fontconfig
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -178,6 +176,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %attr(755,root,root) %{_bindir}/fc-list
 %attr(755,root,root) %{_bindir}/fc-match
 %attr(755,root,root) %{_bindir}/fc-query
+%attr(755,root,root) %{_bindir}/fc-pattern
 %attr(755,root,root) %{_bindir}/fc-scan
 %{_mandir}/man1/fc-*.1*
 %{_mandir}/man5/fonts-conf.5*
