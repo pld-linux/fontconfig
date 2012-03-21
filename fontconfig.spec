@@ -134,6 +134,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %{__automake}
 %configure \
 	--enable-docs \
+	--disable-silent-rules \
 	%{!?with_static_libs:--disable-static}
 %{__make}
 
