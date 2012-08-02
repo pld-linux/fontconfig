@@ -1,27 +1,30 @@
 #
 # Conditional build
 %bcond_without	static_libs	# don't build static library
+%bcond_without	doc
 #
 Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.9.0
+Version:	2.10.1
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	26c83855ed256b5c032baae032fadc4f
+# Source0-md5:	c94e380eea42f2f23ca9537035ef1899
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-blacklist.patch
 Patch1:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+%if %{with doc}
 BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-utils >= 0.6.13-3
+%endif
 BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.5
@@ -133,26 +136,36 @@ Este pacote contém a biblioteca estática do fontconfig
 %{__autoheader}
 %{__automake}
 %configure \
-	--enable-docs \
+	--%{?with_doc:en}%{!?with_doc:dis}able-docs \
 	--disable-silent-rules \
 	%{!?with_static_libs:--disable-static}
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_mandir}/man{1,3,5},/var/cache/fontconfig}
+install -d $RPM_BUILD_ROOT{%{_mandir}/man{1,3,5},/var/cache/fontconfig} \
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	htmldoc_DATA= \
 	doc_DATA=
+
 install %{SOURCE1} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/10-lcd-filter.conf
+	$RPM_BUILD_ROOT%{_datadir}/%{name}/conf.avail/10-lcd-filter.conf
+
+ln -s %{_datadir}/%{name}/conf.avail $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail
 
 cp -f conf.d/README README.confd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%pretrans
+# this needs to be a symlink
+if [ -d "%{_sysconfdir}/fonts/conf.avail" ]; then
+        umask 022
+	mv -f %{_sysconfdir}/fonts/conf.avail{,.rpmsave}
+fi
 
 %post
 umask 022
@@ -166,9 +179,11 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %doc AUTHORS COPYING ChangeLog README README.confd doc/fontconfig-user.html
 %dir %{_sysconfdir}/fonts
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/fonts.conf
-%{_sysconfdir}/fonts/fonts.dtd
-%dir %{_sysconfdir}/fonts/conf.avail
-%{_sysconfdir}/fonts/conf.avail/*.conf
+%dir %{_datadir}/xml/%{name}
+%{_datadir}/xml/%{name}/fonts.dtd
+%{_sysconfdir}/fonts/conf.avail
+%dir %{_datadir}/%{name}/conf.avail
+%{_datadir}/%{name}/conf.avail/*.conf
 %dir %{_sysconfdir}/fonts/conf.d
 %{_sysconfdir}/fonts/conf.d/README
 %config(noreplace,missingok) %verify(not link md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
@@ -179,8 +194,10 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %attr(755,root,root) %{_bindir}/fc-query
 %attr(755,root,root) %{_bindir}/fc-pattern
 %attr(755,root,root) %{_bindir}/fc-scan
+%if %{with doc}
 %{_mandir}/man1/fc-*.1*
 %{_mandir}/man5/fonts-conf.5*
+%endif
 /var/cache/fontconfig
 
 %files libs
@@ -195,7 +212,9 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %{_libdir}/libfontconfig.la
 %{_includedir}/fontconfig
 %{_pkgconfigdir}/fontconfig.pc
+%if %{with doc}
 %{_mandir}/man3/Fc*.3*
+%endif
 
 %if %{with static_libs}
 %files static
