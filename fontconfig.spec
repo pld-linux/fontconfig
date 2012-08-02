@@ -140,6 +140,10 @@ Este pacote contém a biblioteca estática do fontconfig
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+
+# don't rebuild docs by default, use prebuild ones
+export HASDOCBOOK=no
+
 %configure \
 	--%{?with_doc:en}%{!?with_doc:dis}able-docs \
 	--disable-silent-rules \
