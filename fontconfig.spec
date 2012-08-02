@@ -164,10 +164,18 @@ install %{SOURCE1} \
 
 ln -s %{_datadir}/%{name}/conf.avail $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail
 
-cp -f conf.d/README README.confd
+cp -pf conf.d/README README.confd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%pretrans
+# this needs to be a symlink
+if [ -d %{_sysconfdir}/fonts/conf.avail ]; then
+	mv -f %{_sysconfdir}/fonts/conf.avail{,.rpmsave}
+	install -d %{_datadir}/%{name}/conf.avail
+	ln -s %{_datadir}/%{name}/conf.avail %{_sysconfdir}/fonts/conf.avail
+fi
 
 %post
 umask 022
@@ -181,9 +189,9 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %doc AUTHORS COPYING ChangeLog README README.confd doc/fontconfig-user.html
 %dir %{_sysconfdir}/fonts
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/fonts.conf
+%{_sysconfdir}/fonts/conf.avail
 %dir %{_datadir}/xml/%{name}
 %{_datadir}/xml/%{name}/fonts.dtd
-%{_sysconfdir}/fonts/conf.avail
 %dir %{_datadir}/%{name}/conf.avail
 %{_datadir}/%{name}/conf.avail/*.conf
 %dir %{_sysconfdir}/fonts/conf.d
