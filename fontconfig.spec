@@ -173,9 +173,9 @@ rm -rf $RPM_BUILD_ROOT
 # this needs to be a symlink
 if [ -d %{_sysconfdir}/fonts/conf.avail ] && [ ! -L %{_sysconfdir}/fonts/conf.avail ]; then
 	mv -f %{_sysconfdir}/fonts/conf.avail{,.rpmsave}
-	mv -f %{_sysconfdir}/fonts/conf.avail.rpmsave/*.conf %{_sysconfdir}/fonts/conf.avail/
 	install -d %{_datadir}/%{name}/conf.avail
 	ln -s %{_datadir}/%{name}/conf.avail %{_sysconfdir}/fonts/conf.avail
+	mv -f %{_sysconfdir}/fonts/conf.avail.rpmsave/*.conf %{_sysconfdir}/fonts/conf.avail/
 fi
 
 %post
