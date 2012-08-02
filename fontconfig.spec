@@ -171,7 +171,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %pretrans
 # this needs to be a symlink
-if [ -d %{_sysconfdir}/fonts/conf.avail ]; then
+if [ -d %{_sysconfdir}/fonts/conf.avail ] && [ ! -L %{_sysconfdir}/fonts/conf.avail ]; then
 	mv -f %{_sysconfdir}/fonts/conf.avail{,.rpmsave}
 	install -d %{_datadir}/%{name}/conf.avail
 	ln -s %{_datadir}/%{name}/conf.avail %{_sysconfdir}/fonts/conf.avail
@@ -208,7 +208,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %{_mandir}/man1/fc-*.1*
 %{_mandir}/man5/fonts-conf.5*
 %endif
-/var/cache/fontconfig
+%dir /var/cache/fontconfig
 
 %files libs
 %defattr(644,root,root,755)
