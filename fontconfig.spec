@@ -1,9 +1,3 @@
-# TODO:
-# - upgrade puts new files into /usr/share/fontconfig/conf.avail/*.conf
-# and also removes /etc/fonts/conf.avail/*.conf BUT there is a symlink
-# /etc/fonts/conf.avail/ -> /usr/share/fontconfig/conf.avail/ and in the end
-# rpm deletes freshly installed /usr/share/fontconfig/conf.avail/*.conf files
-
 # Conditional build
 %bcond_without	static_libs	# don't build static library
 %bcond_without	doc
@@ -13,7 +7,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.10.1
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
