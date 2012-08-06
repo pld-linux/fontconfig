@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.10.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -187,6 +187,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %{_sysconfdir}/fonts/conf.avail
 %dir %{_datadir}/xml/%{name}
 %{_datadir}/xml/%{name}/fonts.dtd
+%dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/conf.avail
 %{_datadir}/%{name}/conf.avail/*.conf
 %dir %{_sysconfdir}/fonts/conf.d
