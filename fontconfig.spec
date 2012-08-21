@@ -1,13 +1,13 @@
 # Conditional build
 %bcond_without	static_libs	# don't build static library
 %bcond_without	doc
-#
+
 Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.10.1
-Release:	2
+Release:	3
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -170,6 +170,7 @@ if [ -d %{_sysconfdir}/fonts/conf.avail ] && [ ! -L %{_sysconfdir}/fonts/conf.av
 	install -d %{_datadir}/%{name}/conf.avail
 	ln -s %{_datadir}/%{name}/conf.avail %{_sysconfdir}/fonts/conf.avail
 	mv -f %{_sysconfdir}/fonts/conf.avail.rpmsave/*.conf %{_sysconfdir}/fonts/conf.avail/
+	rmdir %{_sysconfdir}/fonts/conf.avail.rpmsave 2>/dev/null || :
 fi
 
 %post
