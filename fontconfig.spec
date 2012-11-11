@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.10.1
-Release:	5
+Release:	6
 Epoch:		1
 License:	MIT
 Group:		Libraries
