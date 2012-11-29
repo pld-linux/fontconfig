@@ -1,3 +1,4 @@
+#
 # Conditional build
 %bcond_without	static_libs	# don't build static library
 %bcond_without	doc
@@ -16,7 +17,7 @@ Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
 %if %{with doc}
 BuildRequires:	docbook-dtd31-sgml
@@ -128,7 +129,7 @@ Este pacote contém a biblioteca estática do fontconfig
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
