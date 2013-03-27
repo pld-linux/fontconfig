@@ -7,13 +7,13 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.10.2
+Version:	2.10.91
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
-Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.gz
-# Source0-md5:	025e08b3d7fe45c433de5718e441ed15
+Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.bz2
+# Source0-md5:	c795bb39fab3a656e5dff8bad6a199f6
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
@@ -200,6 +200,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %attr(755,root,root) %{_bindir}/fc-query
 %attr(755,root,root) %{_bindir}/fc-pattern
 %attr(755,root,root) %{_bindir}/fc-scan
+%attr(755,root,root) %{_bindir}/fc-validate
 %if %{with doc}
 %{_mandir}/man1/fc-*.1*
 %{_mandir}/man5/fonts-conf.5*
