@@ -18,7 +18,7 @@ Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf >= 2.61
-BuildRequires:	automake
+BuildRequires:	automake >= 1:1.11
 %if %{with doc}
 BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-dtd41-sgml
