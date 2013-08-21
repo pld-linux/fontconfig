@@ -8,7 +8,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.10.93
-Release:	1
+Release:	3
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -16,6 +16,7 @@ Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.bz2
 # Source0-md5:	0f8e5c63c2d6931626185c02802375a3
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
+Patch1:		%{name}-git.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11
@@ -126,6 +127,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
