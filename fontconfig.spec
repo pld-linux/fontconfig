@@ -1,8 +1,8 @@
 #
 # Conditional build
 %bcond_without	static_libs	# don't build static library
-%bcond_without	doc
-%bcond_without	tests
+%bcond_without	doc		# don't build HTML and man docs
+%bcond_without	tests		# don't perform make check
 
 Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
@@ -139,7 +139,7 @@ Este pacote contém a biblioteca estática do fontconfig
 export HASDOCBOOK=no
 
 %configure \
-	--%{?with_doc:en}%{!?with_doc:dis}able-docs \
+	--enable-docs%{!?with_doc:=no} \
 	--disable-silent-rules \
 	%{!?with_static_libs:--disable-static}
 %{__make}
