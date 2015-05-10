@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.11.1
-Release:	2
+Release:	3
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -185,15 +185,8 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog README README.confd doc/fontconfig-user.html
-%dir %{_sysconfdir}/fonts
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/fonts.conf
 %{_sysconfdir}/fonts/conf.avail
-%dir %{_datadir}/xml/%{name}
-%{_datadir}/xml/%{name}/fonts.dtd
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/conf.avail
-%{_datadir}/%{name}/conf.avail/*.conf
-%dir %{_sysconfdir}/fonts/conf.d
 %{_sysconfdir}/fonts/conf.d/README
 %config(noreplace,missingok) %verify(not link md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
 %attr(755,root,root) %{_bindir}/fc-cache
@@ -204,6 +197,9 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %attr(755,root,root) %{_bindir}/fc-pattern
 %attr(755,root,root) %{_bindir}/fc-scan
 %attr(755,root,root) %{_bindir}/fc-validate
+%dir %{_datadir}/xml/%{name}
+%{_datadir}/xml/%{name}/fonts.dtd
+%{_datadir}/%{name}/conf.avail/*.conf
 %if %{with doc}
 %{_mandir}/man1/fc-*.1*
 %{_mandir}/man5/fonts-conf.5*
