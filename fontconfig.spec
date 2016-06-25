@@ -8,13 +8,13 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.11.1
-Release:	3
+Version:	2.12.0
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
-Source0:	http://fontconfig.org/release/%{name}-%{version}.tar.bz2
-# Source0-md5:	824d000eb737af6e16c826dd3b2d6c90
+Source0:	https://www.freedesktop.org/software/fontconfig/release/%{name}-%{version}.tar.bz2
+# Source0-md5:	f0313daaec6dce8471a2e57ac08c9fda
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
@@ -28,7 +28,7 @@ BuildRequires:	docbook-utils >= 0.6.13-3
 BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.5
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pkgconfig
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	freetype >= 2.1.5
