@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.12.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -28,6 +28,7 @@ BuildRequires:	docbook-utils >= 0.6.13-3
 BuildRequires:	ed
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel >= 2.1.5
+BuildRequires:	gperf
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pkgconfig
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
@@ -127,6 +128,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %prep
 %setup -q
 %patch0 -p1
+rm src/fcobjshash.h
 
 %build
 %{__libtoolize}
