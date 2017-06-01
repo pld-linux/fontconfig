@@ -128,6 +128,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %prep
 %setup -q
 %patch0 -p1
+# header will be regenerated with system gperf
 rm src/fcobjshash.h
 
 %build
