@@ -8,13 +8,13 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.12.5
+Version:	2.12.6
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	https://www.freedesktop.org/software/fontconfig/release/%{name}-%{version}.tar.bz2
-# Source0-md5:	e4d04a7723a66ae4db2a47703de00880
+# Source0-md5:	733f5e2371ca77b69707bd7b30cc2163
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
