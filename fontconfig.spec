@@ -8,13 +8,13 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.12.6
+Version:	2.13.0
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	https://www.freedesktop.org/software/fontconfig/release/%{name}-%{version}.tar.bz2
-# Source0-md5:	733f5e2371ca77b69707bd7b30cc2163
+# Source0-md5:	60d2394a79d3b2e5db2daea55193fa47
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
@@ -27,12 +27,13 @@ BuildRequires:	docbook-utils >= 0.6.13-3
 %endif
 BuildRequires:	ed
 BuildRequires:	expat-devel
-BuildRequires:	freetype-devel >= 2.1.5
+BuildRequires:	freetype-devel >= 2.8.1
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	gperf
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pkgconfig
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-Requires:	freetype >= 2.1.5
+Requires:	freetype >= 2.8.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -130,6 +131,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %patch0 -p1
 
 %build
+%{__gettextize}
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
@@ -163,6 +165,9 @@ ln -s %{_datadir}/%{name}/conf.avail $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.av
 
 cp -pf conf.d/README README.confd
 
+%find_lang %{name}
+%find_lang %{name}-conf -a %{name}.lang
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -183,7 +188,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog README README.confd doc/fontconfig-user.html
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/fonts.conf
@@ -192,6 +197,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %config(noreplace,missingok) %verify(not link md5 mtime size) %{_sysconfdir}/fonts/conf.d/*.conf
 %attr(755,root,root) %{_bindir}/fc-cache
 %attr(755,root,root) %{_bindir}/fc-cat
+%attr(755,root,root) %{_bindir}/fc-conflist
 %attr(755,root,root) %{_bindir}/fc-list
 %attr(755,root,root) %{_bindir}/fc-match
 %attr(755,root,root) %{_bindir}/fc-query
@@ -219,6 +225,8 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 %{_libdir}/libfontconfig.la
 %{_includedir}/fontconfig
 %{_pkgconfigdir}/fontconfig.pc
+%{_datadir}/gettext/its/fontconfig.its
+%{_datadir}/gettext/its/fontconfig.loc
 %if %{with doc}
 %{_mandir}/man3/Fc*.3*
 %endif
