@@ -149,7 +149,7 @@ export HASDOCBOOK=no
 	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static
 %{__make}
 
-%{?with_tests:%{__make} check}
+%{?with_tests:%{__make} check || cat test/test-suite.log}
 
 %install
 rm -rf $RPM_BUILD_ROOT
