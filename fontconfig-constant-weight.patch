@@ -1,8 +1,18 @@
+From 198358dd8ff858c9e36531a7406ccb2246ae77b7 Mon Sep 17 00:00:00 2001
+From: Akira TAGOH <akira@tagoh.org>
+Date: Mon, 12 Mar 2018 11:49:58 +0900
+Subject: Allow the constant names in the range
+
+https://bugs.freedesktop.org/show_bug.cgi?id=105415
+---
+ src/fcname.c | 34 +++++++++++++++++++++++++++++-----
+ 1 file changed, 29 insertions(+), 5 deletions(-)
+
 diff --git a/src/fcname.c b/src/fcname.c
-index 79e413e..2172d70 100644
+index 79e413e..15fb659 100644
 --- a/src/fcname.c
 +++ b/src/fcname.c
-@@ -330,13 +330,36 @@ FcNameConvert (FcType type, FcChar8 *string)
+@@ -330,13 +330,37 @@ FcNameConvert (FcType type, FcChar8 *string)
      case FcTypeRange:
  	if (sscanf ((char *) string, "[%lg %lg]", &b, &e) != 2)
  	{
@@ -18,7 +28,8 @@ index 79e413e..2172d70 100644
  	    {
 -		v.type = FcTypeVoid;
 -		break;
-+		if (FcNameConstant ((const FcChar8 *) sc, &si) && FcNameConstant ((const FcChar8 *) ec, &ei))
++		if (FcNameConstant ((const FcChar8 *) sc, &si) &&
++		    FcNameConstant ((const FcChar8 *) ec, &ei))
 +		    v.u.r =  FcRangeCreateDouble (si, ei);
 +		else
 +		    goto bail1;
@@ -44,3 +55,37 @@ index 79e413e..2172d70 100644
  	}
  	else
  	    v.u.r = FcRangeCreateDouble (b, e);
+-- 
+cgit v1.1
+
+From 4699406a68321179b14fae7412f828e2f37a7033 Mon Sep 17 00:00:00 2001
+From: Akira TAGOH <akira@tagoh.org>
+Date: Wed, 14 Mar 2018 18:31:30 +0900
+Subject: Add the value of the constant name to the implicit object in the
+ pattern
+
+For objects which has been changed the object type to FcTypeRange.
+
+https://bugs.freedesktop.org/show_bug.cgi?id=105415
+---
+ src/fcname.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/fcname.c b/src/fcname.c
+index 15fb659..c9320ae 100644
+--- a/src/fcname.c
++++ b/src/fcname.c
+@@ -490,6 +490,10 @@ FcNameParse (const FcChar8 *name)
+ 			if (!FcPatternAddBool (pat, c->object, c->value))
+ 			    goto bail2;
+ 			break;
++		    case FcTypeRange:
++			if (!FcPatternAddInteger (pat, c->object, c->value))
++			    goto bail2;
++			break;
+ 		    default:
+ 			break;
+ 		    }
+-- 
+cgit v1.1
+
