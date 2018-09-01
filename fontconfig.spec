@@ -8,16 +8,15 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.13.0
-Release:	3
+Version:	2.13.1
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	https://www.freedesktop.org/software/fontconfig/release/%{name}-%{version}.tar.bz2
-# Source0-md5:	60d2394a79d3b2e5db2daea55193fa47
+# Source0-md5:	36cdea1058ef13cbbfdabe6cb019dc1c
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
-Patch1:		%{name}-constant-weight.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11
@@ -130,7 +129,6 @@ Este pacote contém a biblioteca estática do fontconfig
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__gettextize}
@@ -149,7 +147,7 @@ export HASDOCBOOK=no
 	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static
 %{__make}
 
-%{?with_tests:%{__make} check || (cat test/test-suite.log && /bin/false)}
+%{?with_tests:%{__make} OSTYPE=linux check || (cat test/test-suite.log && /bin/false)}
 
 %install
 rm -rf $RPM_BUILD_ROOT
