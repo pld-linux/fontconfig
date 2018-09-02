@@ -27,13 +27,15 @@ BuildRequires:	docbook-utils >= 0.6.13-3
 %endif
 BuildRequires:	ed
 BuildRequires:	expat-devel
-BuildRequires:	freetype-devel >= 2.8.1
+# pkgconfig(freetype) >= 21.0.15
+BuildRequires:	freetype-devel >= 1:2.8.1
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	gperf
+%{?with_tests:BuildRequires:	json-c-devel}
 BuildRequires:	libtool >= 2:2.2
+BuildRequires:	libuuid-devel
 BuildRequires:	pkgconfig
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-Requires:	freetype >= 2.8.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -59,7 +61,7 @@ Summary:	Font configuration and customization library
 Summary(pl.UTF-8):	Biblioteka do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Biblioteca para configuração e customização do acesso a fontes
 Group:		Libraries
-Requires:	freetype >= 2.1.5
+Requires:	freetype >= 1:2.8.1
 Provides:	XFree86-fontconfig
 Obsoletes:	XFree86-fontconfig
 Conflicts:	fontconfig <= 1:2.2.98-1
@@ -83,7 +85,8 @@ Summary(pt_BR.UTF-8):	Biblioteca para configuração e customização do acesso 
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	expat-devel
-Requires:	freetype-devel >= 2.1.5
+Requires:	freetype-devel >= 1:2.8.1
+Requires:	libuuid-devel
 Provides:	XFree86-fontconfig-devel
 Obsoletes:	XFree86-fontconfig-devel
 
