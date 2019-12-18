@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.13.1
-Release:	2
+Release:	3
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -132,6 +132,9 @@ Este pacote contém a biblioteca estática do fontconfig
 %prep
 %setup -q
 %patch0 -p1
+
+# bwrap: No permissions to creating new namespace, likely because the kernel does not allow non-privileged user namespaces...
+sed -i -e 's#BWRAP=.*#BWRAP=#g' test/run-test.sh
 
 %build
 %{__gettextize}
