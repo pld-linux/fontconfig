@@ -8,13 +8,13 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.13.1
-Release:	4
+Version:	2.14.0
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
-Source0:	https://www.freedesktop.org/software/fontconfig/release/%{name}-%{version}.tar.bz2
-# Source0-md5:	36cdea1058ef13cbbfdabe6cb019dc1c
+Source0:	https://www.freedesktop.org/software/fontconfig/release/%{name}-%{version}.tar.xz
+# Source0-md5:	e12700a9d522bdfec06b6b7e72646987
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
@@ -35,6 +35,9 @@ BuildRequires:	gperf
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	libuuid-devel
 BuildRequires:	pkgconfig
+%{?with_doc:BuildRequires:	python3}
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

@@ -6,5 +6,5 @@
  			<family>FreeSerif</family>
 +			<family>Bitstream Cyberbit</family>
  			<family>Code2000</family>
+			<family>Code2001</family> <!-- plane1 and beyond -->
  		</prefer>
- 	</alias>
