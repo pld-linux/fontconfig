@@ -1,0 +1,13 @@
+--- fontconfig-2.14.0/test/Makefile.am.orig	2022-01-28 10:34:44.000000000 +0100
++++ fontconfig-2.14.0/test/Makefile.am	2022-04-07 20:24:29.827809835 +0200
+@@ -69,8 +69,8 @@
+ # to meaningfully test anything, and we are not installed yet.
+ #TESTS += test-pthread
+ 
+-check_PROGRAMS += test-crbug1004254
+-test_crbug1004254_LDADD = $(top_builddir)/src/libfontconfig.la
++#check_PROGRAMS += test-crbug1004254
++#test_crbug1004254_LDADD = $(top_builddir)/src/libfontconfig.la
+ # Disabling this for the same reason as above but trying to run in run-test.sh.
+ #TESTS += test-crbug1004254
+ endif

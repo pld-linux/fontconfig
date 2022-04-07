@@ -17,6 +17,7 @@ Source0:	https://www.freedesktop.org/software/fontconfig/release/%{name}-%{versi
 # Source0-md5:	e12700a9d522bdfec06b6b7e72646987
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
+Patch1:		disable-tests.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11
@@ -136,6 +137,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 # bwrap: No permissions to creating new namespace, likely because the kernel does not allow non-privileged user namespaces...
 sed -i -e 's#BWRAP=.*#BWRAP=#g' test/run-test.sh
