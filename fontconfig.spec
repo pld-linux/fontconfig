@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.14.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -20,6 +20,7 @@ Patch0:		%{name}-bitstream-cyberbit.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11
+%{?with_tests:BuildRequires:	bubblewrap}
 %if %{with doc}
 BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-dtd41-sgml
