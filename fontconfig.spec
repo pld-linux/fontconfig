@@ -68,7 +68,7 @@ Summary(pt_BR.UTF-8):	Biblioteca para configuração e customização do acesso 
 Group:		Libraries
 Requires:	freetype >= 1:2.9
 Provides:	XFree86-fontconfig
-Obsoletes:	XFree86-fontconfig
+Obsoletes:	XFree86-fontconfig < 4.4
 Conflicts:	fontconfig <= 1:2.2.98-1
 
 %description libs
@@ -93,7 +93,7 @@ Requires:	expat-devel
 Requires:	freetype-devel >= 1:2.9
 Requires:	libuuid-devel
 Provides:	XFree86-fontconfig-devel
-Obsoletes:	XFree86-fontconfig-devel
+Obsoletes:	XFree86-fontconfig-devel < 4.4
 
 %description devel
 Fontconfig is designed to locate fonts within the system and select
@@ -123,7 +123,7 @@ Summary(pt_BR.UTF-8):	Biblioteca estática para configuração e customização 
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:	XFree86-fontconfig-static
-Obsoletes:	XFree86-fontconfig-static
+Obsoletes:	XFree86-fontconfig-static < 4.4
 
 %description static
 This package contains static version of fontconfig library.
