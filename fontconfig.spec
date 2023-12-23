@@ -8,18 +8,18 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.14.2
-Release:	2
+Version:	2.15.0
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	https://www.freedesktop.org/software/fontconfig/release/%{name}-%{version}.tar.xz
-# Source0-md5:	95261910ea727b5dd116b06fbfd84b1f
+# Source0-md5:	5bb3a2829aecb22ae553c39099bd0d6a
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 Patch1:		disable-tests.patch
 URL:		http://fontconfig.org/
-BuildRequires:	autoconf >= 2.61
+BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake >= 1:1.11
 %{?with_tests:BuildRequires:	bubblewrap}
 %if %{with doc}
@@ -202,7 +202,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog README README.confd doc/fontconfig-user.html
+%doc AUTHORS COPYING ChangeLog NEWS README.md README.confd doc/fontconfig-user.html
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/fonts.conf
 %{_sysconfdir}/fonts/conf.avail
 %{_sysconfdir}/fonts/conf.d/README
