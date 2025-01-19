@@ -137,8 +137,8 @@ Este pacote contém a biblioteca estática do fontconfig
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 # bwrap: No permissions to creating new namespace, likely because the kernel does not allow non-privileged user namespaces...
 sed -i -e 's#BWRAP=.*#BWRAP=#g' test/run-test.sh
