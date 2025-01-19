@@ -8,13 +8,13 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.15.0
+Version:	2.16.0
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
 Source0:	https://www.freedesktop.org/software/fontconfig/release/%{name}-%{version}.tar.xz
-# Source0-md5:	5bb3a2829aecb22ae553c39099bd0d6a
+# Source0-md5:	20d5466544aa62d18c94106faa169a09
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 Patch1:		disable-tests.patch
@@ -38,6 +38,7 @@ BuildRequires:	libtool >= 2:2.2
 BuildRequires:	libuuid-devel
 BuildRequires:	pkgconfig
 %{?with_doc:BuildRequires:	python3}
+BuildRequires:	rpmbuild(macros) >= 2.036
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
@@ -143,6 +144,7 @@ Este pacote contém a biblioteca estática do fontconfig
 sed -i -e 's#BWRAP=.*#BWRAP=#g' test/run-test.sh
 
 %build
+%{__gettextize -d po-conf}
 %{__gettextize}
 %{__libtoolize}
 %{__aclocal} -I m4
@@ -202,7 +204,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog NEWS README.md README.confd doc/fontconfig-user.html
+%doc AUTHORS COPYING NEWS README.md README.confd doc/fontconfig-user.html
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fonts/fonts.conf
 %{_sysconfdir}/fonts/conf.avail
 %{_sysconfdir}/fonts/conf.d/README
@@ -232,7 +234,7 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/fontconfig-devel/*.html
+%doc doc/fontconfig-devel.html
 %attr(755,root,root) %{_libdir}/libfontconfig.so
 %{_libdir}/libfontconfig.la
 %{_includedir}/fontconfig
