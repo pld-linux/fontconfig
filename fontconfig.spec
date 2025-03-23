@@ -1,20 +1,24 @@
 #
 # Conditional build
-%bcond_without	static_libs	# don't build static library
-%bcond_without	doc		# don't build HTML and man docs
-%bcond_without	tests		# don't perform make check
+%bcond_without	static_libs	# static library
+%bcond_without	doc		# HTML and man docs
+%bcond_without	tests		# unit tests
 
 Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.16.0
+Version:	2.16.1
 Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
-Source0:	https://www.freedesktop.org/software/fontconfig/release/%{name}-%{version}.tar.xz
-# Source0-md5:	20d5466544aa62d18c94106faa169a09
+# up to 2.16.0:
+#Source0:	https://www.freedesktop.org/software/fontconfig/release/%{name}-%{version}.tar.xz
+# now at gitlab only
+#Source0Download: https://gitlab.freedesktop.org/fontconfig/fontconfig/-/releases
+Source0:	https://gitlab.freedesktop.org/api/v4/projects/890/packages/generic/fontconfig/%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	57f386865c0e06825b2b564754f22b88
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 Patch1:		disable-tests.patch
