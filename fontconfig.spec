@@ -8,7 +8,7 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.17.1
+Version:	2.18.0
 Release:	1
 Epoch:		1
 License:	MIT
@@ -18,7 +18,7 @@ Group:		Libraries
 # now at gitlab only
 #Source0Download: https://gitlab.freedesktop.org/fontconfig/fontconfig/-/releases
 Source0:	https://gitlab.freedesktop.org/api/v4/projects/890/packages/generic/fontconfig/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	f68f95052c7297b98eccb7709d817f6a
+# Source0-md5:	6d8e89d90cf4a9c5d15ae4a6c5d75537
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 Patch1:		disable-tests.patch
@@ -145,7 +145,7 @@ Este pacote contém a biblioteca estática do fontconfig
 %patch -P1 -p1
 
 # bwrap: No permissions to creating new namespace, likely because the kernel does not allow non-privileged user namespaces...
-sed -i -e 's#BWRAP=.*#BWRAP=#g' test/run-test.sh
+sed -i -e 's#BWRAP=.*#BWRAP=#g' test/run-test-map.sh
 
 %build
 %{__gettextize -d po-conf}
@@ -233,13 +233,13 @@ HOME=/tmp %{_bindir}/fc-cache -f 2>/dev/null || :
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libfontconfig.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfontconfig.so.1
+%{_libdir}/libfontconfig.so.*.*.*
+%ghost %{_libdir}/libfontconfig.so.1
 
 %files devel
 %defattr(644,root,root,755)
 %doc doc/fontconfig-devel.html
-%attr(755,root,root) %{_libdir}/libfontconfig.so
+%{_libdir}/libfontconfig.so
 %{_libdir}/libfontconfig.la
 %{_includedir}/fontconfig
 %{_pkgconfigdir}/fontconfig.pc
