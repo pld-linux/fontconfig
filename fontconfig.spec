@@ -46,7 +46,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 2.036
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -72,7 +72,7 @@ Summary:	Font configuration and customization library
 Summary(pl.UTF-8):	Biblioteka do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Biblioteca para configuração e customização do acesso a fontes
 Group:		Libraries
-Requires:	freetype >= 1:2.9
+Requires:	freetype%{?_isa} >= 1:2.9
 Provides:	XFree86-fontconfig
 Obsoletes:	XFree86-fontconfig < 4.4
 Conflicts:	fontconfig <= 1:2.2.98-1
@@ -94,10 +94,10 @@ Summary:	Font configuration and customization library - development files
 Summary(pl.UTF-8):	Biblioteka do konfigurowania fontów - pliki dla programistów
 Summary(pt_BR.UTF-8):	Biblioteca para configuração e customização do acesso a fontes - arquivos de desenvolvimento
 Group:		Development/Libraries
-Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-Requires:	expat-devel
-Requires:	freetype-devel >= 1:2.9
-Requires:	libuuid-devel
+Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	expat-devel%{?_isa}
+Requires:	freetype-devel%{?_isa} >= 1:2.9
+Requires:	libuuid-devel%{?_isa}
 Provides:	XFree86-fontconfig-devel
 Obsoletes:	XFree86-fontconfig-devel < 4.4
 
@@ -127,7 +127,7 @@ Summary:	Static font configuration and customization library
 Summary(pl.UTF-8):	Statyczna biblioteka do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Biblioteca estática para configuração e customização do acesso a fontes
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{epoch}:%{version}-%{release}
 Provides:	XFree86-fontconfig-static
 Obsoletes:	XFree86-fontconfig-static < 4.4
 
