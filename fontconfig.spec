@@ -8,8 +8,8 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.18.0
-Release:	2
+Version:	2.18.1
+Release:	1
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -18,11 +18,10 @@ Group:		Libraries
 # now at gitlab only
 #Source0Download: https://gitlab.freedesktop.org/fontconfig/fontconfig/-/releases
 Source0:	https://gitlab.freedesktop.org/api/v4/projects/890/packages/generic/fontconfig/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	6d8e89d90cf4a9c5d15ae4a6c5d75537
+# Source0-md5:	7c28095f89559d9bdef9d2e5d9d882f6
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 Patch1:		disable-tests.patch
-Patch2:		fixes.patch
 URL:		http://fontconfig.org/
 BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake >= 1:1.11
@@ -144,7 +143,6 @@ Este pacote contém a biblioteca estática do fontconfig
 %setup -q
 %patch -P0 -p1
 %patch -P1 -p1
-%patch -P2 -p1
 
 # bwrap: No permissions to creating new namespace, likely because the kernel does not allow non-privileged user namespaces...
 sed -i -e 's#BWRAP=.*#BWRAP=#g' test/run-test-map.sh
