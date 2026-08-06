@@ -8,7 +8,7 @@ Summary:	Font configuration and customization tools
 Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
-Version:	2.18.2
+Version:	2.18.3
 Release:	1
 Epoch:		1
 License:	MIT
@@ -18,7 +18,7 @@ Group:		Libraries
 # now at gitlab only
 #Source0Download: https://gitlab.freedesktop.org/fontconfig/fontconfig/-/releases
 Source0:	https://gitlab.freedesktop.org/api/v4/projects/890/packages/generic/fontconfig/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	784b516220f93441d8ffc67ee9b3b34a
+# Source0-md5:	ce819e229ca6fb7d1be47a192d6681a3
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 Patch1:		disable-tests.patch
