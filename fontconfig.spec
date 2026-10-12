@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.18.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -184,16 +184,6 @@ cp -pf conf.d/README README.confd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%pretrans
-# this needs to be a symlink
-if [ -d %{_sysconfdir}/fonts/conf.avail ] && [ ! -L %{_sysconfdir}/fonts/conf.avail ]; then
-	mv -f %{_sysconfdir}/fonts/conf.avail{,.rpmsave}
-	install -d %{_datadir}/%{name}/conf.avail
-	ln -s %{_datadir}/%{name}/conf.avail %{_sysconfdir}/fonts/conf.avail
-	mv -f %{_sysconfdir}/fonts/conf.avail.rpmsave/*.conf %{_sysconfdir}/fonts/conf.avail/
-	rmdir %{_sysconfdir}/fonts/conf.avail.rpmsave 2>/dev/null || :
-fi
 
 %post
 umask 022
