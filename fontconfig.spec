@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Narzędzia do konfigurowania fontów
 Summary(pt_BR.UTF-8):	Ferramentas para configuração e customização do acesso a fontes
 Name:		fontconfig
 Version:	2.18.3
-Release:	2
+Release:	3
 Epoch:		1
 License:	MIT
 Group:		Libraries
@@ -22,7 +22,9 @@ Source0:	https://gitlab.freedesktop.org/api/v4/projects/890/packages/generic/fon
 Source1:	%{name}-lcd-filter.conf
 Patch0:		%{name}-bitstream-cyberbit.patch
 Patch1:		disable-tests.patch
-URL:		http://fontconfig.org/
+Patch2:		%{name}-cache-charset-validation.patch
+Patch3:		%{name}-cache-type-validation.patch
+URL:		https://fontconfig.org/
 BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake >= 1:1.11
 %if %{with doc}
@@ -30,7 +32,6 @@ BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-utils >= 0.6.13-3
 %endif
-BuildRequires:	ed
 BuildRequires:	expat-devel
 # pkgconfig(freetype) >= 21.0.15
 BuildRequires:	freetype-devel >= 1:2.9
@@ -38,7 +39,6 @@ BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	gperf
 %{?with_tests:BuildRequires:	json-c-devel}
 BuildRequires:	libtool >= 2:2.2
-BuildRequires:	libuuid-devel
 BuildRequires:	pkgconfig
 %{?with_doc:BuildRequires:	python3}
 BuildRequires:	rpmbuild(macros) >= 2.036
@@ -95,7 +95,6 @@ Group:		Development/Libraries
 Requires:	%{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	expat-devel%{?_isa}
 Requires:	freetype-devel%{?_isa} >= 1:2.9
-Requires:	libuuid-devel%{?_isa}
 Provides:	XFree86-fontconfig-devel
 Obsoletes:	XFree86-fontconfig-devel < 4.4
 
@@ -142,6 +141,8 @@ Este pacote contém a biblioteca estática do fontconfig
 %setup -q
 %patch -P0 -p1
 %patch -P1 -p1
+%patch -P2 -p1
+%patch -P3 -p1
 
 %build
 %{__gettextize -d po-conf}

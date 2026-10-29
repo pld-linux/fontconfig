@@ -1,0 +1,56 @@
+# reject crafted caches whose FcCharSet offsets point outside the cache (arbitrary free)
+# https://gitlab.freedesktop.org/fontconfig/fontconfig/-/commit/4ba7952e (issue #558)
+diff --git a/src/fccache.c b/src/fccache.c
+index 8cce6f2d..cdb36eab 100644
+--- a/src/fccache.c
++++ b/src/fccache.c
+@@ -970,6 +970,49 @@ FcCacheOffsetsValid (FcCache *cache)
+ 			    }
+ 			    return FcFalse;
+ 			}
++			{
++			    const FcCharSet *cs = FcValueCharSet (&l->value);
++			    intptr_t *leaves;
++			    int k;
++
++			    if ((char *)cs < base || (char *)cs > end - sizeof (FcCharSet) ||
++			        !FcRefIsConst (&cs->ref)) {
++				if (FcDebug() & FC_DBG_CACHE) {
++				    fprintf (stderr, "Fontconfig warning: invalid cache: non-constant or out-of-bounds charset\n");
++				}
++				return FcFalse;
++			    }
++			    if (cs->num < 0)
++				return FcFalse;
++			    if (cs->num > 0) {
++				if (cs->leaves_offset < 0 ||
++				    cs->leaves_offset > end - (char *)cs ||
++				    cs->num > (end - (char *)cs - cs->leaves_offset) / sizeof (intptr_t)) {
++				    if (FcDebug() & FC_DBG_CACHE) {
++					fprintf (stderr, "Fontconfig warning: invalid cache: broken charset leaves offset\n");
++				    }
++				    return FcFalse;
++				}
++				if (cs->numbers_offset < 0 ||
++				    cs->numbers_offset > end - (char *)cs ||
++				    cs->num > (end - (char *)cs - cs->numbers_offset) / sizeof (FcChar16)) {
++				    if (FcDebug() & FC_DBG_CACHE) {
++					fprintf (stderr, "Fontconfig warning: invalid cache: broken charset numbers offset\n");
++				    }
++				    return FcFalse;
++				}
++				leaves = FcCharSetLeaves (cs);
++				for (k = 0; k < cs->num; k++) {
++				    if (leaves[k] < -((char *)leaves - base) ||
++				        leaves[k] > end - (char *)leaves - (ptrdiff_t) sizeof (FcCharLeaf)) {
++					if (FcDebug() & FC_DBG_CACHE) {
++					    fprintf (stderr, "Fontconfig warning: invalid cache: broken charset leaf offset\n");
++					}
++					return FcFalse;
++				    }
++				}
++			    }
++			}
+ 			break;
+ 		    case FcTypeLangSet:
+ 			ls = FcValueLangSet (&l->value);
